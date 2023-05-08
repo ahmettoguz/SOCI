@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrationActivity">
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    tools:ignore="HardcodedText">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--this is the filled layout box for the edit text-->
+    <!--this layout must be used to reposition or change
+        the height and width of the edit text-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Enter something">
+
+        <!--this is the actual edit text which takes the input-->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!--sample button to submit entered data
+        inside from edit text-->
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="Submit" />
+
+    <!--text view which previews the entered data by user-->
+    <TextView
+        android:id="@+id/text_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:text="You Entered : "
+        android:textSize="18sp" />
+
+</LinearLayout>
