@@ -17,26 +17,25 @@ public class RegistrationActivity extends AppCompatActivity {
     EditText mEditText;
     TextView tvTextPreview;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registration);
 
         // Register the UI widgets
         // with their appropriate IDs.
-        bSubmit = findViewById(R.id.submit_button);
+        bSubmit=findViewById(R.id.submit_button);
         mEditText = findViewById(R.id.edit_text);
         tvTextPreview = findViewById(R.id.text_preview);
 
         // handle submit button to preview the entered data
-//        bSubmit.setOnClickListener(new View.OnClickListener() {
-//            @SuppressLint("SetTextI18n")
-//            @Override
-//            public void onClick(View v) {
-//                // set the entered data to text preview
-//                tvTextPreview.setText("You Entered : " + mEditText.getText().toString());
-//            }
-//        });
+        bSubmit.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onClick(View v) {
+                // set the entered data to text preview
+                tvTextPreview.setText("You Entered : " + mEditText.getText().toString());
+            }
+        });
     }
 }
