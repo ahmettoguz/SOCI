@@ -7,50 +7,54 @@
     tools:context=".InformationActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:id="@+id/Information_Title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Information"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="30dp" />
+        android:text=" My Information"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="86dp"
+        android:id="@+id/Information_Image"
+        android:layout_width="157dp"
+        android:layout_height="138dp"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="75dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/Information_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="95dp" />
+        app:layout_constraintBottom_toTopOf="@+id/Information_surname"
+        tools:layout_editor_absoluteX="194dp" />
 
     <TextView
-        android:id="@+id/surname"
+        android:id="@+id/Information_surname"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginBottom="30dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="136dp" />
+        app:layout_constraintBottom_toTopOf="@+id/Information_mail"
+        tools:layout_editor_absoluteX="194dp" />
 
     <TextView
-        android:id="@+id/mail"
+        android:id="@+id/Information_mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="184dp" />
+        app:layout_constraintBottom_toTopOf="@+id/Information_editInformation"
+        tools:layout_editor_absoluteX="194dp" />
 
     <Button
-        android:id="@+id/edit"
-        android:layout_width="wrap_content"
+        android:id="@+id/Information_editInformation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Edit "
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="238dp" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="286dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
