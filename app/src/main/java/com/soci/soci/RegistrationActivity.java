@@ -2,6 +2,7 @@ package com.soci.soci;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,8 +23,8 @@ public class RegistrationActivity extends AppCompatActivity {
         // Register the UI widgets
         // with their appropriate IDs.
         bSubmit=findViewById(R.id.submit_button);
-        mEditText = findViewById(R.id.Add_Activity);
-        tvTextPreview = findViewById(R.id.text_preview);
+        mEditText = findViewById(R.id.nameTextField);
+        //tvTextPreview = findViewById(R.id.text_preview);
 
         // handle submit button to preview the entered data
         bSubmit.setOnClickListener(new View.OnClickListener() {
