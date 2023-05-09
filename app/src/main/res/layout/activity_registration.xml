@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".MainActivity"
     tools:ignore="HardcodedText">
@@ -18,13 +18,14 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
-        android:hint="Enter something">
+        android:hint="Name">
 
         <!--this is the actual edit text which takes the input-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/nameTextField"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -35,13 +36,14 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
-        android:hint="Enter something">
+        android:hint="Surname">
 
         <!--this is the actual edit text which takes the input-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/surnameTextField"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -52,13 +54,14 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
-        android:hint="Enter something">
+        android:hint="Email">
 
         <!--this is the actual edit text which takes the input-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/mailTextField"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,13 +72,16 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="32dp"
-        android:hint="Enter something">
+        android:hint="Password"
+        app:endIconMode="password_toggle">
 
         <!--this is the actual edit text which takes the input-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordTextField"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:singleLine="true"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
