@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/linear_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/shadow"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/component_Margin_Top3"
+        android:paddingBottom="@dimen/component_Margin_Top2">
+
+        <ImageView
+            android:id="@+id/register_Iv"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/studentregister" />
+
+        <TextView
+            android:id="@+id/register_Tv_Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/component_Margin_Top2"
+            android:text="@string/Student_Registeration"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_Size"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/register_Et_Name"
+            android:layout_width="@dimen/card_Component_Width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/component_Margin_Top"
+            android:ems="10"
+            android:hint="@string/Name"
+            android:inputType="textPersonName"
+            android:textSize="@dimen/text_Size" />
+
+        <EditText
+            android:id="@+id/register_Et_Email"
+            android:layout_width="@dimen/card_Component_Width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/component_Margin_Top"
+            android:ems="10"
+            android:hint="@string/E_Mail"
+            android:inputType="textPersonName"
+            android:textSize="@dimen/text_Size" />
+
+        <EditText
+            android:id="@+id/register_Et_Password"
+            android:layout_width="@dimen/card_Component_Width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/component_Margin_Top"
+            android:ems="10"
+            android:hint="@string/Password"
+            android:inputType="textPassword"
+            android:textSize="@dimen/text_Size" />
+
+        <Button
+            android:id="@+id/register_Btn_Register"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/component_Margin_Top"
+
+            android:backgroundTint="@color/material_dynamic_secondary10"
+            android:text="@string/Register"
+            android:textSize="@dimen/text_Size" />
+
+    </LinearLayout>
+</LinearLayout>
