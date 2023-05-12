@@ -3,25 +3,35 @@ package com.soci.soci;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.view.WindowManager;
+
+import com.soci.soci.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        Button bttn, btnLogin;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        Toast.makeText(this, "test", Toast.LENGTH_SHORT).show();
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
 
-        bttn = findViewById(R.id.registActBttn);
+        // hide title bar
+        getSupportActionBar().hide();
+        setContentView(view);
 
-        bttn.setOnClickListener(new View.OnClickListener() {
+        // hide status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // lock orientation
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+        binding.registActBttn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = null;
@@ -31,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnLogin = findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = null;
@@ -41,8 +50,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
-
-
 }

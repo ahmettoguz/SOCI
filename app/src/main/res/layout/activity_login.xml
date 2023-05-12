@@ -13,7 +13,7 @@
         android:layout_height="480dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:background="@layout/shadow"
+        android:background="@drawable/shadow"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

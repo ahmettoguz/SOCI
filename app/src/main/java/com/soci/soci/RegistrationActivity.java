@@ -1,39 +1,45 @@
 package com.soci.soci;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-public class RegistrationActivity extends AppCompatActivity {
+import android.content.pm.ActivityInfo;
+import android.view.WindowManager;
 
-    // UI widgets to handle
-    Button bSubmit;
-    EditText mEditText;
-    TextView tvTextPreview;
+import com.soci.soci.databinding.ActivityRegistrationBinding;
+
+
+public class RegistrationActivity extends AppCompatActivity {
+    ActivityRegistrationBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
 
-        // Register the UI widgets
-        // with their appropriate IDs.
-        bSubmit=findViewById(R.id.submit_button);
-        mEditText = findViewById(R.id.nameTextField);
-        //tvTextPreview = findViewById(R.id.text_preview);
+        binding = ActivityRegistrationBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+
+        // hide title bar
+        getSupportActionBar().hide();
+        setContentView(view);
+
+        // hide status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        // lock orientation
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         // handle submit button to preview the entered data
-        bSubmit.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onClick(View v) {
-                // set the entered data to text preview
-                tvTextPreview.setText("You Entered : " + mEditText.getText().toString());
-            }
-        });
+//        binding.submitButton.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("SetTextI18n")
+//            @Override
+//            public void onClick(View v) {
+//                // set the entered data to text preview
+//                tvTextPreview.setText("You Entered : " + mEditText.getText().toString());
+//            }
+//        });
     }
 }
