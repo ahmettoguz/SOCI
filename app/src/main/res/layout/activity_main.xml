@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:id="@+id/main_Tv_Title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@drawable/shadow"
+        android:paddingVertical="@dimen/dp10"
+        android:text="@string/SOCI_Events"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/header_Size" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginHorizontal="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp10"
+        android:entries="@array/categories" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_Rv_Events"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginHorizontal="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/shadow" />
 
     <Button
         android:id="@+id/registActBttn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
+        android:layout_marginTop="@dimen/dp50"
+        android:text="Button" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -34,8 +50,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="7dp"
-        android:text="Login page"
-        app:layout_constraintEnd_toEndOf="@+id/registActBttn"
-        app:layout_constraintTop_toBottomOf="@+id/registActBttn" />
+        android:text="Login page" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/main_Btn_AddEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:contentDescription="no description"
+            app:srcCompat="@drawable/ic_plus_24" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</LinearLayout>

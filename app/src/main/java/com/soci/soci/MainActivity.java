@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.soci.soci.databinding.ActivityMainBinding;
 
@@ -48,6 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
                 intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        binding.mainBtnAddEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Add clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }

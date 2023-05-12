@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="categories">
+        <item>All</item>
+        <item>Sports</item>
+        <item>Table Games</item>
+        <item>Concert</item>
+        <item>Meet Up</item>
+        <item>Camping</item>
+        <item>Cinema - Theater</item>
+        <item>Spectator</item>
+        <item>Meal</item>
+        <item>Sightseeing</item>
+        <item>Conference</item>
+    </array>
+</resources>

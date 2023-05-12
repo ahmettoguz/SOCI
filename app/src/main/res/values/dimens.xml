@@ -15,7 +15,7 @@
     <dimen name="dp50">50dp</dimen>
 
     <dimen name="shadowTop">1dp</dimen>
-    <dimen name="shadowBottom">2dp</dimen>
+    <dimen name="shadowBottom">1dp</dimen>
     <dimen name="shadowLeft">1dp</dimen>
     <dimen name="shadowRight">1dp</dimen>
     <dimen name="shadowRadius">5dp</dimen>
