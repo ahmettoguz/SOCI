@@ -41,24 +41,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         // swiper related
-        List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new UserEventFragment(MainActivity.this));
-        fragmentList.add(new EventsFragment(MainActivity.this));
-        fragmentList.add(new UserInformationFragment(MainActivity.this));
         PageSwiperAdapter pagerAdapter = new PageSwiperAdapter(this);
         binding.mainVpViewPager.setAdapter(pagerAdapter);
 
-        TabLayout.Tab tab1 = binding.mainTlTabLayout.newTab();
-        tab1.setIcon(R.drawable.soci_icon);
-        binding.mainTlTabLayout.addTab(tab1);
+        TabLayout.Tab tab = binding.mainTlTabLayout.newTab();
+        tab.setIcon(R.drawable.tab_0);
+        binding.mainTlTabLayout.addTab(tab);
 
-        TabLayout.Tab tab2 = binding.mainTlTabLayout.newTab();
-        tab2.setIcon(R.drawable.soci_icon);
-        binding.mainTlTabLayout.addTab(tab2);
+        tab = binding.mainTlTabLayout.newTab();
+        tab.setIcon(R.drawable.tab_1);
+        binding.mainTlTabLayout.addTab(tab);
 
-        TabLayout.Tab tab3 = binding.mainTlTabLayout.newTab();
-        tab3.setIcon(R.drawable.soci_icon);
-        binding.mainTlTabLayout.addTab(tab3);
+        tab = binding.mainTlTabLayout.newTab();
+        tab.setIcon(R.drawable.tab_2);
+        binding.mainTlTabLayout.addTab(tab);
+
 
         // swiper related
         binding.mainVpViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -87,6 +84,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // swiper related start from events fragment
-        binding.mainVpViewPager.setCurrentItem(1,false);
+        binding.mainVpViewPager.setCurrentItem(1, false);
     }
 }

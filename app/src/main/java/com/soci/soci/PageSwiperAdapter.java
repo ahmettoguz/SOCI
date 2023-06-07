@@ -22,11 +22,11 @@ public class PageSwiperAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new UserInformationFragment(ctx);
+                return new UserEventFragment(ctx);
             case 1:
                 return new EventsFragment(ctx);
             case 2:
-                return new UserEventFragment(ctx);
+                return new UserInformationFragment(ctx);
             default:
                 return null;
         }

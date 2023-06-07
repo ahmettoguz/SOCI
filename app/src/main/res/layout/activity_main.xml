@@ -9,13 +9,13 @@
         android:id="@+id/main_Tl_TabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/Tomato"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabIndicatorColor="@color/design_default_color_on_primary"
-        app:tabTextColor="@android:color/white"
+        app:tabTextColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <androidx.viewpager2.widget.ViewPager2
