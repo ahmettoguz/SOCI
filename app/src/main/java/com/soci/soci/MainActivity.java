@@ -19,7 +19,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
-    private PagerAdapterWrapper pagerAdapter;
     private TabLayout tabLayout;
     ActivityMainBinding binding;
 
@@ -43,15 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
         // swiper related
         List<Fragment> fragmentList = new ArrayList<>();
-        fragmentList.add(new UserEventFragment());
-        fragmentList.add(new EventsFragment());
-        fragmentList.add(new UserInformationFragment());
-        pagerAdapter = new PagerAdapterWrapper(this, fragmentList);
+        fragmentList.add(new UserEventFragment(MainActivity.this));
+        fragmentList.add(new EventsFragment(MainActivity.this));
+        fragmentList.add(new UserInformationFragment(MainActivity.this));
+        PageSwiperAdapter pagerAdapter = new PageSwiperAdapter(this);
         binding.mainVpViewPager.setAdapter(pagerAdapter);
-
-//        binding.mainTlTabLayout.addTab(binding.mainTlTabLayout.newTab().setText("Page 1"));
-//        binding.mainTlTabLayout.addTab(binding.mainTlTabLayout.newTab().setText("Page 2"));
-//        binding.mainTlTabLayout.addTab(binding.mainTlTabLayout.newTab().setText("Page 3"));
 
         TabLayout.Tab tab1 = binding.mainTlTabLayout.newTab();
         tab1.setIcon(R.drawable.soci_icon);
