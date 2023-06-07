@@ -2,16 +2,24 @@ package com.soci.soci;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
+import androidx.viewpager2.widget.ViewPager2;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.tabs.TabLayout;
 import com.soci.soci.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class MainActivity extends AppCompatActivity {
+    private ViewPager2 viewPager;
+    private TabLayout tabLayout;
     ActivityMainBinding binding;
 
     @Override
@@ -32,31 +40,50 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
-        binding.registActBttn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = null;
+        // swiper related
+        PageSwiperAdapter pagerAdapter = new PageSwiperAdapter(this);
+        binding.mainVpViewPager.setAdapter(pagerAdapter);
 
-                intent = new Intent(MainActivity.this, InformationActivity.class);
-                startActivity(intent);
+        TabLayout.Tab tab = binding.mainTlTabLayout.newTab();
+        tab.setIcon(R.drawable.tab_0);
+        binding.mainTlTabLayout.addTab(tab);
+
+        tab = binding.mainTlTabLayout.newTab();
+        tab.setIcon(R.drawable.tab_1);
+        binding.mainTlTabLayout.addTab(tab);
+
+        tab = binding.mainTlTabLayout.newTab();
+        tab.setIcon(R.drawable.tab_2);
+        binding.mainTlTabLayout.addTab(tab);
+
+
+        // swiper related
+        binding.mainVpViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                binding.mainTlTabLayout.selectTab(binding.mainTlTabLayout.getTabAt(position));
             }
         });
 
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+        // swiper related
+        binding.mainTlTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = null;
+            public void onTabSelected(TabLayout.Tab tab) {
+                binding.mainVpViewPager.setCurrentItem(tab.getPosition());
+            }
 
-                intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+                // Do nothing
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                // Do nothing
             }
         });
 
-        binding.mainBtnAddEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Add clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        // swiper related start from events fragment
+        binding.mainVpViewPager.setCurrentItem(1, false);
     }
 }
