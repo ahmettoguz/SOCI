@@ -48,9 +48,22 @@ public class MainActivity extends AppCompatActivity {
         fragmentList.add(new UserInformationFragment());
         pagerAdapter = new PagerAdapterWrapper(this, fragmentList);
         binding.mainVpViewPager.setAdapter(pagerAdapter);
-        binding.mainTlTabLayout.addTab(binding.mainTlTabLayout.newTab().setText("Page 1"));
-        binding.mainTlTabLayout.addTab(binding.mainTlTabLayout.newTab().setText("Page 2"));
-        binding.mainTlTabLayout.addTab(binding.mainTlTabLayout.newTab().setText("Page 3"));
+
+//        binding.mainTlTabLayout.addTab(binding.mainTlTabLayout.newTab().setText("Page 1"));
+//        binding.mainTlTabLayout.addTab(binding.mainTlTabLayout.newTab().setText("Page 2"));
+//        binding.mainTlTabLayout.addTab(binding.mainTlTabLayout.newTab().setText("Page 3"));
+
+        TabLayout.Tab tab1 = binding.mainTlTabLayout.newTab();
+        tab1.setIcon(R.drawable.soci_icon);
+        binding.mainTlTabLayout.addTab(tab1);
+
+        TabLayout.Tab tab2 = binding.mainTlTabLayout.newTab();
+        tab2.setIcon(R.drawable.soci_icon);
+        binding.mainTlTabLayout.addTab(tab2);
+
+        TabLayout.Tab tab3 = binding.mainTlTabLayout.newTab();
+        tab3.setIcon(R.drawable.soci_icon);
+        binding.mainTlTabLayout.addTab(tab3);
 
         // swiper related
         binding.mainVpViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
