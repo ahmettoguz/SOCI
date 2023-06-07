@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background_login"
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/main_Tv_Title"
+        android:id="@+id/events_Tv_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -30,7 +31,7 @@
         android:entries="@array/categories" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_Rv_Events"
+        android:id="@+id/events_Rv_Events"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginHorizontal="@dimen/dp10"
@@ -38,14 +39,14 @@
         android:background="@drawable/shadow" />
 
     <Button
-        android:id="@+id/registActBttn"
+        android:id="@+id/events_registActBttn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp50"
         android:text="Button" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/events_btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
@@ -59,7 +60,7 @@
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/main_Btn_AddEvent"
+            android:id="@+id/events_Btn_AddEvent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
