@@ -1,4 +1,4 @@
-package com.soci.soci;
+package com.soci.soci.Ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,16 +7,17 @@ import android.view.View;
 import android.content.pm.ActivityInfo;
 import android.view.WindowManager;
 
-import com.soci.soci.databinding.ActivityAddBinding;
+import com.soci.soci.databinding.ActivityInformationBinding;
 
-public class AddActivity extends AppCompatActivity {
-    ActivityAddBinding binding;
+
+public class InformationActivity extends AppCompatActivity {
+    ActivityInformationBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityAddBinding.inflate(getLayoutInflater());
+        binding = ActivityInformationBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
         // hide title bar

@@ -1,4 +1,4 @@
-package com.soci.soci;
+package com.soci.soci.Ui;
 
 import android.content.Context;
 import android.content.Intent;

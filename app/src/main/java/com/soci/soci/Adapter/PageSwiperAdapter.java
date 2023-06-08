@@ -1,4 +1,4 @@
-package com.soci.soci;
+package com.soci.soci.Adapter;
 
 import android.content.Context;
 
@@ -6,6 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.soci.soci.Ui.EventsFragment;
+import com.soci.soci.Ui.UserEventFragment;
+import com.soci.soci.Ui.UserInformationFragment;
 
 public class PageSwiperAdapter extends FragmentStateAdapter {
 

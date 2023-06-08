@@ -1,4 +1,4 @@
-package com.soci.soci;
+package com.soci.soci.Ui;
 
 import android.os.Bundle;
 import android.view.View;

@@ -8,13 +8,10 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.viewpager2.widget.ViewPager2;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.tabs.TabLayout;
+import com.soci.soci.Adapter.PageSwiperAdapter;
 import com.soci.soci.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
