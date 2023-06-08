@@ -2,8 +2,8 @@
 <resources>
     <array name="categories">
         <item>All</item>
-        <item>Sports</item>
-        <item>Table Games</item>
+        <item>Sport</item>
+        <item>Table Game</item>
         <item>Concert</item>
         <item>Meet Up</item>
         <item>Camping</item>
