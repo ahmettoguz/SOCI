@@ -9,8 +9,8 @@ import java.util.Collections;
 
 public class MainSys {
 
-    public static ArrayList<Person> people;
-    public static ArrayList<Event> events;
+    public static ArrayList<Person> people = new ArrayList<>();
+    public static ArrayList<Event> events = new ArrayList<>();
 
     public static void prepareData() {
 

@@ -2,11 +2,14 @@ package com.soci.soci.Ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.content.pm.ActivityInfo;
 import android.view.WindowManager;
 
+import com.soci.soci.Business.MainSys;
+import com.soci.soci.MainActivity;
 import com.soci.soci.databinding.ActivityLoginBinding;
 
 
@@ -29,5 +32,18 @@ public class LoginActivity extends AppCompatActivity {
 
         // lock orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        //prepare data - will change with database
+        MainSys.prepareData();
+
+        binding.LoginBtnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent(LoginActivity.this, MainActivity.class);
+                sendIntent.putExtra("person_id", 1);
+                startActivity(sendIntent);
+                finish();
+            }
+        });
     }
 }
