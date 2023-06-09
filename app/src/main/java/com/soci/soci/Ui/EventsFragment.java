@@ -45,16 +45,6 @@ public class EventsFragment extends Fragment {
         View view = binding.getRoot();
 
 
-        binding.eventsRegistActBttn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = null;
-
-                intent = new Intent(ctx, InformationActivity.class);
-                startActivity(intent);
-            }
-        });
-
         binding.eventsBtnAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

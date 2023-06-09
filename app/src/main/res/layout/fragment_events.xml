@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background_login"
+    android:background="@drawable/background_theme"
     tools:context=".MainActivity">
 
     <TextView
@@ -37,21 +37,6 @@
         android:layout_marginHorizontal="@dimen/dp10"
         android:layout_marginTop="@dimen/dp10"
         android:background="@drawable/shadow" />
-
-    <Button
-        android:id="@+id/events_registActBttn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp50"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/events_btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="7dp"
-        android:text="Login page" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
 
