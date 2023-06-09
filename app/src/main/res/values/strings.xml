@@ -6,6 +6,9 @@
     <string name="email">Email</string>
     <string name="social_event_planner">SOCIAL EVENT PLANNER</string>
     <string name="SOCI_Events">SOCI Events</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register_title">Registration</string>
+    <string name="select_Gender">Select Gender</string>
+    <string name="male">Male</string>
+    <string name="Female">Female</string>
 </resources>

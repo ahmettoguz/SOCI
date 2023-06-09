@@ -88,4 +88,13 @@ public class MainSys {
     public static void msg(Context ctx, String msg) {
         Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
     }
+
+    public static boolean containsNonDigit(String digits) {
+        for (int i = 0; i < digits.length(); i++) {
+            if (!Character.isDigit(digits.charAt(i))) {
+                return true; // Non-digit character found
+            }
+        }
+        return false; // Only digit characters found
+    }
 }

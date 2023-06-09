@@ -1,103 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:background="@drawable/background_theme"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    tools:ignore="HardcodedText"
-    android:background="@drawable/background_theme"
->
+    tools:ignore="HardcodedText">
 
-    <!--this is the filled layout box for the edit text-->
-    <!--this layout must be used to reposition or change
-        the height and width of the edit text-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Name">
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="630dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shadow"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <!--this is the actual edit text which takes the input-->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameTextField"
+        <TextView
+            android:id="@+id/login_Tv_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"/>
+            android:layout_marginTop="@dimen/dp10"
+            android:text="@string/register_title"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/header_Size"
+            android:textStyle="bold" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/surname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Surname">
-
-        <!--this is the actual edit text which takes the input-->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/surnameTextField"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_et_Name1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"/>
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_marginEnd="32dp"
+            android:hint="Name">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <!--this is the actual edit text which takes the input-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_et_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/mail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Email">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!--this is the actual edit text which takes the input-->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/mailTextField"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_et_Surname1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"/>
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_marginEnd="32dp"
+            android:hint="Surname">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <!--this is the actual edit text which takes the input-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_et_Surname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:hint="Password"
-        app:endIconMode="password_toggle">
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <!--this is the actual edit text which takes the input-->
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordTextField"
+
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:singleLine="true"/>
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_marginEnd="32dp"
+            android:text="@string/select_Gender"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_Size" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <RadioGroup
+            android:id="@+id/register_rg_Gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="horizontal">
 
-    <!--sample button to submit entered data
-        inside from edit text-->
-    <Button
-        android:id="@+id/submit_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:text="Submit" />
+            <RadioButton
+                android:id="@+id/register_rb_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/male" />
 
+            <RadioButton
+                android:id="@+id/register_rb_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp20"
+                android:text="@string/Female" />
+        </RadioGroup>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_et_Mail1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_marginEnd="32dp"
+            android:hint="Email">
 
+            <!--this is the actual edit text which takes the input-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_et_Mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_et_Phone1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_marginEnd="32dp"
+            android:hint="Phone - 0505...">
+
+            <!--this is the actual edit text which takes the input-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_et_Phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/register_et_Password1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_marginEnd="32dp"
+            android:hint="Password"
+            app:endIconMode="password_toggle">
+
+            <!--this is the actual edit text which takes the input-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_et_Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:singleLine="true" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/register_btn_Register"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp20"
+            android:backgroundTint="@color/material_dynamic_secondary10"
+            android:text="Register"
+            android:textSize="@dimen/text_Size" />
+
+    </LinearLayout>
 </LinearLayout>

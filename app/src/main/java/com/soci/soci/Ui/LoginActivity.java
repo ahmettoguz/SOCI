@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void fillForm() {
-        binding.loginEtEmail.setText("ahmet");
+        binding.loginEtEmail.setText("ahmet@hotmail.com");
         binding.loginEtPassword.setText("ahmet123");
     }
 
