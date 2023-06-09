@@ -17,9 +17,11 @@ import com.soci.soci.databinding.FragmentUserInformationBinding;
 public class UserInformationFragment extends Fragment {
 
     Context ctx;
+    int current_Person_id;
 
-    public UserInformationFragment(Context ctx) {
+    public UserInformationFragment(Context ctx, int current_Person_id) {
         this.ctx = ctx;
+        this.current_Person_id = current_Person_id;
         // Required empty public constructor
     }
 
@@ -38,7 +40,7 @@ public class UserInformationFragment extends Fragment {
         binding.userInfoBtnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ctx, "working.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, "working." + current_Person_id, Toast.LENGTH_SHORT).show();
             }
         });
 

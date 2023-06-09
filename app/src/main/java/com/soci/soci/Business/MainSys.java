@@ -97,4 +97,13 @@ public class MainSys {
         }
         return false; // Only digit characters found
     }
+
+    public static Person getPersonById(int id) {
+        for (Person p : people) {
+            if (p.getId() == id)
+                return p;
+        }
+
+        return null;
+    }
 }

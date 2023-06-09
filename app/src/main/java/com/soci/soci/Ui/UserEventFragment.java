@@ -16,11 +16,12 @@ import com.soci.soci.databinding.FragmentUserEventBinding;
 
 public class UserEventFragment extends Fragment {
 
-Context ctx;
+    Context ctx;
+    int current_Person_id;
 
-    public UserEventFragment(Context ctx) {
-    this.ctx = ctx;
-        // Required empty public constructor
+    public UserEventFragment(Context ctx, int current_Person_id) {
+        this.ctx = ctx;
+        this.current_Person_id = current_Person_id;
     }
 
 
@@ -40,7 +41,7 @@ Context ctx;
         binding.userEventBtnTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ctx, "pressed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, "pressed." + current_Person_id, Toast.LENGTH_SHORT).show();
             }
         });
 

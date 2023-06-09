@@ -2,8 +2,10 @@ package com.soci.soci;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -11,6 +13,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.soci.soci.Adapter.PageSwiperAdapter;
+import com.soci.soci.Business.MainSys;
+import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.ActivityMainBinding;
 
 
@@ -36,9 +40,22 @@ public class MainActivity extends AppCompatActivity {
         // lock orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        // get current user
+        Intent receivedIntent = getIntent();
+        int current_Person_id = receivedIntent.getIntExtra("person_id", -1);
+        Person current_Person = MainSys.getPersonById(current_Person_id);
 
+        MainSys.msg(MainActivity.this, current_Person.getName());
+
+        // swiper opertaions
+        performSwiperOperation(current_Person_id);
+
+
+    }
+
+    private void performSwiperOperation(int current_Person_id) {
         // swiper related
-        PageSwiperAdapter pagerAdapter = new PageSwiperAdapter(this);
+        PageSwiperAdapter pagerAdapter = new PageSwiperAdapter(this, current_Person_id);
         binding.mainVpViewPager.setAdapter(pagerAdapter);
 
         TabLayout.Tab tab = binding.mainTlTabLayout.newTab();
@@ -82,5 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
         // swiper related start from events fragment
         binding.mainVpViewPager.setCurrentItem(1, false);
+
     }
 }

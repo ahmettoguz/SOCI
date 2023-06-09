@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.content.pm.ActivityInfo;
 import android.view.WindowManager;
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (result.get("success").equalsIgnoreCase("true")) {
                     Intent sendIntent = new Intent(LoginActivity.this, MainActivity.class);
-                    sendIntent.putExtra("person_id", result.get("id"));
+                    sendIntent.putExtra("person_id", Integer.parseInt(result.get("id")));
                     startActivity(sendIntent);
                     finish();
                 } else {

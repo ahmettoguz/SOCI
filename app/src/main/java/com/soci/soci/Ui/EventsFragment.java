@@ -16,10 +16,20 @@ import com.soci.soci.databinding.FragmentEventsBinding;
 public class EventsFragment extends Fragment {
 
     Context ctx;
+    int current_Person_id;
 
-    public EventsFragment(Context ctx) {
+    EventsFragmentInterface fragmentInterfaceListener;
+
+    public EventsFragment(Context ctx, int current_Person_id) {
         this.ctx = ctx;
-        // Required empty public constructor
+        this.current_Person_id = current_Person_id;
+
+        if (ctx instanceof EventsFragmentInterface)
+            fragmentInterfaceListener = (EventsFragmentInterface) ctx;
+    }
+
+    interface EventsFragmentInterface {
+        public void performEventsFragment();
     }
 
     @Override
@@ -45,16 +55,6 @@ public class EventsFragment extends Fragment {
             }
         });
 
-        binding.eventsBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = null;
-
-                intent = new Intent(ctx, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
         binding.eventsBtnAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +65,5 @@ public class EventsFragment extends Fragment {
 
         // Inflate the layout for this fragment
         return view;
-
     }
 }
