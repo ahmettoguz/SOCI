@@ -1,5 +1,8 @@
 package com.soci.soci.Business;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 
@@ -80,5 +83,9 @@ public class MainSys {
         event = new Event(9, 20, "Volunteering Project Conference", "Conference", "Volunteering project meet up. Zoom link will be provided.", "Anakara/Bilkent/Conference Building B1", "27/06/2023-13.00", "27/06/2023-14.00");
         events.add(event);
         // events end
+    }
+
+    public static void msg(Context ctx, String msg) {
+        Toast.makeText(ctx, msg, Toast.LENGTH_SHORT).show();
     }
 }

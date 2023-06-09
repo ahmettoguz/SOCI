@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="480dp"
+        android:layout_height="440dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/shadow"
@@ -75,10 +75,11 @@
             android:id="@+id/login_Tv_Register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp15"
             android:text="@string/register"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:textColor="@color/DarkBlue"
             android:textSize="@dimen/text_Size"
             android:textStyle="italic" />
 
