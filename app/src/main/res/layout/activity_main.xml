@@ -9,12 +9,12 @@
         android:id="@+id/main_Tl_TabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/Tomato"
+        android:background="@color/DarkCyan"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabIndicatorColor="@color/design_default_color_on_primary"
+        app:tabIndicatorColor="@color/Azure"
         app:tabTextColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent" />
 
