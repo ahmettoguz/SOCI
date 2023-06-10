@@ -23,7 +23,7 @@
         android:textSize="@dimen/header_Size" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/events_Sp_Categories"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp40"
         android:layout_marginHorizontal="@dimen/dp10"
@@ -33,7 +33,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/events_Rv_Events"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="322dp"
         android:layout_marginHorizontal="@dimen/dp10"
         android:layout_marginTop="@dimen/dp10"
         android:background="@drawable/shadow" />
