@@ -41,7 +41,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         // interface related
         if (context instanceof EventsAdapterBehavior)
             behavior = (EventsAdapterBehavior) context;
-        else{
+        else {
             MainSys.msg(context, "there is problem about interface");
         }
     }
@@ -140,6 +140,13 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public int getItemViewType(int position) {
         Event event = recyclerItemValues.get(position);
         int eventId = event.getId();
+
+        if (current_Person.getCreated_Events().contains(eventId))
+            Log.d("ahmet", "owner_" + eventId);
+        else if (current_Person.getParticipated_Events().contains(eventId))
+            Log.d("ahmet", "participated_" + eventId);
+        else
+            Log.d("ahmet", "nothing" + eventId);
 
         if (current_Person.getCreated_Events().contains(eventId))
             return RV_ITEM_OWNER;
