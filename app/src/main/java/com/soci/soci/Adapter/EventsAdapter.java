@@ -77,11 +77,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.name.setText(currentItem.getName());
 
             String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
-            Log.d("ahmet", imgName);
-            // convert image name to id
-            int imgId = context.getResources().getIdentifier(imgName, "drawable",
-                    context.getPackageName());
-
+            int imgId = MainSys.convertImageNameToId(context, imgName);
             itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
@@ -97,11 +93,8 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.name.setText(currentItem.getName());
 
             String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
-            //convert image name to id
-//            int imgId = context.getResources().getIdentifier(imgName, "drawable",
-//                    context.getPackageName());
-//
-//            itemView.categoryImage.setImageResource(imgId);
+            int imgId = MainSys.convertImageNameToId(context, imgName);
+            itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -114,12 +107,9 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             EventsAdapter_ItemHolder_Normal itemView = (EventsAdapter_ItemHolder_Normal) holder;
             itemView.name.setText(currentItem.getName());
 
-//            String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
-//            //convert image name to id
-//            int imgId = context.getResources().getIdentifier(imgName, "drawable",
-//                    context.getPackageName());
-//
-//            itemView.categoryImage.setImageResource(imgId);
+            String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
+            int imgId = MainSys.convertImageNameToId(context, imgName);
+            itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -140,13 +130,6 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public int getItemViewType(int position) {
         Event event = recyclerItemValues.get(position);
         int eventId = event.getId();
-
-        if (current_Person.getCreated_Events().contains(eventId))
-            Log.d("ahmet", "owner_" + eventId);
-        else if (current_Person.getParticipated_Events().contains(eventId))
-            Log.d("ahmet", "participated_" + eventId);
-        else
-            Log.d("ahmet", "nothing" + eventId);
 
         if (current_Person.getCreated_Events().contains(eventId))
             return RV_ITEM_OWNER;

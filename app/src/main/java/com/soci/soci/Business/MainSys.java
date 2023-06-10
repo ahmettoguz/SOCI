@@ -109,26 +109,31 @@ public class MainSys {
 
     public static String getImgNameFromCategory(String category) {
         if (category.equalsIgnoreCase("Sport"))
-            return "category_sport.png";
+            return "category_sport";
         else if (category.equalsIgnoreCase("Table Game"))
-            return "category_tablegames.png";
+            return "category_tablegames";
         else if (category.equalsIgnoreCase("Concert"))
-            return "category_concert.png";
+            return "category_concert";
         else if (category.equalsIgnoreCase("Meet Up"))
-            return "category_meetup.png";
+            return "category_meetup";
         else if (category.equalsIgnoreCase("Camping"))
-            return "category_camping.png";
+            return "category_camping";
         else if (category.equalsIgnoreCase("Cinema - Theater"))
-            return "category_cinematheater.png";
+            return "category_cinematheater";
         else if (category.equalsIgnoreCase("Spectator"))
-            return "category_spectator.png";
+            return "category_spectator";
         else if (category.equalsIgnoreCase("Meal"))
-            return "category_meal.png";
+            return "category_meal";
         else if (category.equalsIgnoreCase("Sightseeing"))
-            return "category_sightseeing.png";
+            return "category_sightseeing";
         else if (category.equalsIgnoreCase("Conference"))
-            return "category_conference.png";
+            return "category_conference";
         return null;
+    }
+
+    public static int convertImageNameToId(Context ctx, String imgName){
+        return ctx.getResources().getIdentifier(imgName, "drawable",
+                ctx.getPackageName());
     }
 
     public static ArrayList<Event> getEventsAsArrayListFromCategory(String category) {
