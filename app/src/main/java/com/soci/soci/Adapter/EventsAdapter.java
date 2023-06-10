@@ -1,6 +1,7 @@
 package com.soci.soci.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,9 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         // interface related
         if (context instanceof EventsAdapterBehavior)
             behavior = (EventsAdapterBehavior) context;
+        else{
+            MainSys.msg(context, "there is problem about interface");
+        }
     }
 
     @NonNull
@@ -73,11 +77,12 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.name.setText(currentItem.getName());
 
             String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
-            //convert image name to id
-//            int imgId = context.getResources().getIdentifier(imgName, "drawable",
-//                    context.getPackageName());
-//
-//            itemView.categoryImage.setImageResource(imgId);
+            Log.d("ahmet", imgName);
+            // convert image name to id
+            int imgId = context.getResources().getIdentifier(imgName, "drawable",
+                    context.getPackageName());
+
+            itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +157,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public EventsAdapter_ItemHolder_Owner(@NonNull View itemView) {
             super(itemView);
+            categoryImage = itemView.findViewById(R.id.rvEventsOwner_Iv_Category);
             name = itemView.findViewById(R.id.rvEventsOwner_Tv_Name);
             parentLayout = itemView.findViewById(R.id.rvEventsOwner_Ll);
         }
@@ -165,6 +171,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public EventsAdapter_ItemHolder_Participated(@NonNull View itemView) {
             super(itemView);
+            categoryImage = itemView.findViewById(R.id.rvEventsNormal_Iv_Category);
             name = itemView.findViewById(R.id.rvEventsParticipated_Tv_Name);
             parentLayout = itemView.findViewById(R.id.rvEventsParticipated_Ll);
         }
@@ -178,6 +185,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public EventsAdapter_ItemHolder_Normal(@NonNull View itemView) {
             super(itemView);
+            categoryImage = itemView.findViewById(R.id.rvEventsNormal_Iv_Category);
             name = itemView.findViewById(R.id.rvEventsNormal_Tv_Name);
             parentLayout = itemView.findViewById(R.id.rvEventsNormal_Ll);
         }
