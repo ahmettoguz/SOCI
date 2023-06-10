@@ -18,7 +18,7 @@ import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.FragmentEventsBinding;
 
-public class EventsFragment extends Fragment {
+public class EventsFragment extends Fragment  implements EventsAdapter.EventsAdapterBehavior{
 
     Context ctx;
     int current_Person_id;
@@ -94,6 +94,13 @@ public class EventsFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
+
+
+    @Override
+    public void displayEventItem(Event event) {
+        MainSys.msg(ctx, event.getName());
+    }
+
 
 //
 //    public void createShowDialog(Event organization) {

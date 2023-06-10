@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     EventsAdapterBehavior behavior;
 
     // interface for behavior
-    interface EventsAdapterBehavior {
+    public interface EventsAdapterBehavior {
         void displayEventItem(Event event);
     }
 
@@ -37,7 +38,8 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.recyclerItemValues = recyclerItemValues;
 
         // interface related
-        behavior = (EventsAdapterBehavior) context;
+        if (context instanceof EventsAdapterBehavior)
+            behavior = (EventsAdapterBehavior) context;
     }
 
     @NonNull
@@ -72,10 +74,10 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
             //convert image name to id
-            int imgId = context.getResources().getIdentifier(imgName, "drawable",
-                    context.getPackageName());
-
-            itemView.categoryImage.setImageResource(imgId);
+//            int imgId = context.getResources().getIdentifier(imgName, "drawable",
+//                    context.getPackageName());
+//
+//            itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -91,10 +93,10 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
             //convert image name to id
-            int imgId = context.getResources().getIdentifier(imgName, "drawable",
-                    context.getPackageName());
-
-            itemView.categoryImage.setImageResource(imgId);
+//            int imgId = context.getResources().getIdentifier(imgName, "drawable",
+//                    context.getPackageName());
+//
+//            itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -107,12 +109,12 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             EventsAdapter_ItemHolder_Normal itemView = (EventsAdapter_ItemHolder_Normal) holder;
             itemView.name.setText(currentItem.getName());
 
-            String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
-            //convert image name to id
-            int imgId = context.getResources().getIdentifier(imgName, "drawable",
-                    context.getPackageName());
-
-            itemView.categoryImage.setImageResource(imgId);
+//            String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
+//            //convert image name to id
+//            int imgId = context.getResources().getIdentifier(imgName, "drawable",
+//                    context.getPackageName());
+//
+//            itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +148,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     class EventsAdapter_ItemHolder_Owner extends RecyclerView.ViewHolder {
         ImageView categoryImage;
         TextView name;
-        ConstraintLayout parentLayout;
+        LinearLayout parentLayout;
 
         public EventsAdapter_ItemHolder_Owner(@NonNull View itemView) {
             super(itemView);
@@ -159,7 +161,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     class EventsAdapter_ItemHolder_Participated extends RecyclerView.ViewHolder {
         ImageView categoryImage;
         TextView name;
-        ConstraintLayout parentLayout;
+        LinearLayout parentLayout;
 
         public EventsAdapter_ItemHolder_Participated(@NonNull View itemView) {
             super(itemView);
@@ -172,7 +174,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     class EventsAdapter_ItemHolder_Normal extends RecyclerView.ViewHolder {
         ImageView categoryImage;
         TextView name;
-        ConstraintLayout parentLayout;
+        LinearLayout parentLayout;
 
         public EventsAdapter_ItemHolder_Normal(@NonNull View itemView) {
             super(itemView);
