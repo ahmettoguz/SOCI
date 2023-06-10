@@ -81,9 +81,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.name.setText(currentItem.getName());
 
             String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
-            Log.d("ahmet", imgName);
             int imgId = MainSys.convertImageNameToId(context, imgName);
-            Log.d("ahmet", imgId + "");
             itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior

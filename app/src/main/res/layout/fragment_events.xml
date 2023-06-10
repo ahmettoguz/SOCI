@@ -26,6 +26,7 @@
         android:id="@+id/events_Sp_Categories"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp40"
+        android:background="@drawable/shadow"
         android:layout_marginHorizontal="@dimen/dp10"
         android:layout_marginTop="@dimen/dp10"
         android:entries="@array/categories" />

@@ -7,9 +7,12 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.soci.soci.Adapter.EventsAdapter;
@@ -17,6 +20,8 @@ import com.soci.soci.Business.MainSys;
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.FragmentEventsBinding;
+
+import org.w3c.dom.Text;
 
 public class EventsFragment extends Fragment {
 
@@ -52,36 +57,8 @@ public class EventsFragment extends Fragment {
         // get current person
         Person current_Person = MainSys.getPersonById(current_Person_id);
 
-        // recycler view related
-        // * place items one by one
-        LinearLayoutManager layoutManager = new LinearLayoutManager(ctx);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        binding.eventsRvEvents.setLayoutManager(layoutManager);
-
-        //// * place item without considering rectangle sizes like pinterest post blog
-        //StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        //recyclerView.setLayoutManager(staggeredGridLayoutManager);
-
-        //// * place items with grid system
-        //GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        //recyclerView.setLayoutManager(gridLayoutManager);
-
-        // fill the RecyclerView
-        EventsAdapter adapter = new EventsAdapter(ctx, MainSys.getEventsAsArrayListFromCategory("all"), current_Person);
-        binding.eventsRvEvents.setAdapter(adapter);
-
-        //// if new element is added notify this change to the recycler view
-        //Button btnAdd = findViewById(R.id.btn_Main_Add);
-        //btnAdd.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        Social s = new Social("ahmooo", R.drawable.ic_launcher_foreground);
-        //        MainSys.getSocials().add(s);
-        //        adapter.notifyDataSetChanged();
-        //    }
-        //});
-
-        // recycler view related end
+        // recycler view
+        fillRecyclerView(binding, current_Person, "all");
 
         binding.eventsBtnAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,9 +67,33 @@ public class EventsFragment extends Fragment {
             }
         });
 
+        binding.eventsSpCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                view = (TextView) view;
+                fillRecyclerView(binding, current_Person, ((TextView) view).getText().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         // Inflate the layout for this fragment
         return view;
+    }
+
+    private void fillRecyclerView(FragmentEventsBinding binding, Person current_Person, String category) {
+        // recycler view related
+        LinearLayoutManager layoutManager = new LinearLayoutManager(ctx);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        binding.eventsRvEvents.setLayoutManager(layoutManager);
+        // fill the RecyclerView
+        EventsAdapter adapter = new EventsAdapter(ctx, MainSys.getEventsAsArrayListFromCategory(category), current_Person);
+        binding.eventsRvEvents.setAdapter(adapter);
+        // recycler view related end
     }
 
 }

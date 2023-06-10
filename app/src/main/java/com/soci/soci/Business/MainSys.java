@@ -1,6 +1,7 @@
 package com.soci.soci.Business;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.soci.soci.Model.Event;
@@ -131,7 +132,7 @@ public class MainSys {
         return null;
     }
 
-    public static int convertImageNameToId(Context ctx, String imgName){
+    public static int convertImageNameToId(Context ctx, String imgName) {
         return ctx.getResources().getIdentifier(imgName, "drawable",
                 ctx.getPackageName());
     }
@@ -141,8 +142,7 @@ public class MainSys {
         for (Event e : events) {
             if (category.equalsIgnoreCase("all") || e.getCategory().equalsIgnoreCase(category))
                 returnEvents.add(e);
-
         }
-        return events;
+        return returnEvents;
     }
 }
