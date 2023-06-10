@@ -130,4 +130,14 @@ public class MainSys {
             return "category_conference.png";
         return null;
     }
+
+    public static ArrayList<Event> getEventsAsArrayListFromCategory(String category) {
+        ArrayList<Event> returnEvents = new ArrayList<>();
+        for (Event e : events) {
+            if (category.equalsIgnoreCase("all") || e.getCategory().equalsIgnoreCase(category))
+                returnEvents.add(e);
+
+        }
+        return events;
+    }
 }

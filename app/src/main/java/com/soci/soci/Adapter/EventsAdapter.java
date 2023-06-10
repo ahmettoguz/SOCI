@@ -24,10 +24,10 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private Person current_Person;
     private ArrayList<Event> recyclerItemValues;
-    AdapterBehavior behavior;
+    EventsAdapterBehavior behavior;
 
     // interface for behavior
-    interface AdapterBehavior {
+    interface EventsAdapterBehavior {
         void displayEventItem(Event event);
     }
 
@@ -37,7 +37,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.recyclerItemValues = recyclerItemValues;
 
         // interface related
-        behavior = (AdapterBehavior) context;
+        behavior = (EventsAdapterBehavior) context;
     }
 
     @NonNull
