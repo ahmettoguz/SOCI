@@ -1,6 +1,7 @@
 package com.soci.soci.Adapter;
 
 import android.content.Context;
+import android.system.StructMsghdr;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,24 +27,11 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private Person current_Person;
     private ArrayList<Event> recyclerItemValues;
-    EventsAdapterBehavior behavior;
-
-    // interface for behavior
-    public interface EventsAdapterBehavior {
-        void displayEventItem(Event event);
-    }
 
     public EventsAdapter(Context context, ArrayList<Event> recyclerItemValues, Person current_Person) {
         this.context = context;
         this.current_Person = current_Person;
         this.recyclerItemValues = recyclerItemValues;
-
-        // interface related
-        if (context instanceof EventsAdapterBehavior)
-            behavior = (EventsAdapterBehavior) context;
-        else {
-            MainSys.msg(context, "there is problem about interface");
-        }
     }
 
     @NonNull
@@ -84,7 +72,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    behavior.displayEventItem(currentItem);
+                    rv_Item_Event(currentItem);
                 }
             });
 
@@ -93,14 +81,16 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.name.setText(currentItem.getName());
 
             String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
+            Log.d("ahmet", imgName);
             int imgId = MainSys.convertImageNameToId(context, imgName);
+            Log.d("ahmet", imgId + "");
             itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    behavior.displayEventItem(currentItem);
+                    rv_Item_Event(currentItem);
                 }
             });
         } else if (getItemViewType(position) == RV_ITEM_NORMAL) {
@@ -115,7 +105,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    behavior.displayEventItem(currentItem);
+                    rv_Item_Event(currentItem);
                 }
             });
         }
@@ -161,7 +151,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public EventsAdapter_ItemHolder_Participated(@NonNull View itemView) {
             super(itemView);
-            categoryImage = itemView.findViewById(R.id.rvEventsNormal_Iv_Category);
+            categoryImage = itemView.findViewById(R.id.rvEventsParticipated_Iv_Category);
             name = itemView.findViewById(R.id.rvEventsParticipated_Tv_Name);
             parentLayout = itemView.findViewById(R.id.rvEventsParticipated_Ll);
         }
@@ -181,4 +171,28 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
+    private void rv_Item_Event(Event event) {
+        MainSys.msg(context, event.getName());
+    }
+
+
+//
+//    public void createShowDialog(Event organization) {
+//        Dialog customDialog = new Dialog(MainActivity.this);
+//        customDialog.setContentView(R.layout.dialog);
+//
+//        TextView tv = customDialog.findViewById(R.id.tvDialogName);
+//        Button btnClose = customDialog.findViewById(R.id.btnDialogClose);
+//
+//        tv.setText(organization.getCompanyName());
+//
+//        btnClose.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                customDialog.dismiss();
+//            }
+//        });
+//
+//        customDialog.show();
+//    }
 }

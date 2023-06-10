@@ -18,7 +18,7 @@ import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.FragmentEventsBinding;
 
-public class EventsFragment extends Fragment  implements EventsAdapter.EventsAdapterBehavior{
+public class EventsFragment extends Fragment {
 
     Context ctx;
     int current_Person_id;
@@ -95,30 +95,4 @@ public class EventsFragment extends Fragment  implements EventsAdapter.EventsAda
         return view;
     }
 
-
-    @Override
-    public void displayEventItem(Event event) {
-        MainSys.msg(ctx, event.getName());
-    }
-
-
-//
-//    public void createShowDialog(Event organization) {
-//        Dialog customDialog = new Dialog(MainActivity.this);
-//        customDialog.setContentView(R.layout.dialog);
-//
-//        TextView tv = customDialog.findViewById(R.id.tvDialogName);
-//        Button btnClose = customDialog.findViewById(R.id.btnDialogClose);
-//
-//        tv.setText(organization.getCompanyName());
-//
-//        btnClose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                customDialog.dismiss();
-//            }
-//        });
-//
-//        customDialog.show();
-//    }
 }
