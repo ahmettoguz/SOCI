@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rvEventsNormal_Ll"
+    android:id="@+id/rvEventsOwner_Ll"
     android:layout_width="match_parent"
     android:layout_height="180dp"
     android:background="@drawable/shadow">
 
     <ImageView
-        android:id="@+id/rvEventsNormal_Iv_Category"
+        android:id="@+id/rvEventsOwner_Iv_Category"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:paddingHorizontal="@dimen/dp5"
@@ -19,7 +19,7 @@
         android:layout_weight="1" />
 
     <TextView
-        android:id="@+id/rvEventsNormal_Tv_Name"
+        android:id="@+id/rvEventsOwner_Tv_Name"
         android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -33,8 +33,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <Space
+    <ImageView
+        android:id="@+id/rvEventsOwner_Iv_Owner"
         android:layout_width="90dp"
-        android:layout_height="match_parent" />
-
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/dp5"
+        app:srcCompat="@drawable/owner" />
 </LinearLayout>

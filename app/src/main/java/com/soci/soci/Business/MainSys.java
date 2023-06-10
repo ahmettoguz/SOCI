@@ -106,4 +106,28 @@ public class MainSys {
 
         return null;
     }
+
+    public static String getImgNameFromCategory(String category) {
+        if (category.equalsIgnoreCase("Sport"))
+            return "category_sport.png";
+        else if (category.equalsIgnoreCase("Table Game"))
+            return "category_tablegames.png";
+        else if (category.equalsIgnoreCase("Concert"))
+            return "category_concert.png";
+        else if (category.equalsIgnoreCase("Meet Up"))
+            return "category_meetup.png";
+        else if (category.equalsIgnoreCase("Camping"))
+            return "category_camping.png";
+        else if (category.equalsIgnoreCase("Cinema - Theater"))
+            return "category_cinematheater.png";
+        else if (category.equalsIgnoreCase("Spectator"))
+            return "category_spectator.png";
+        else if (category.equalsIgnoreCase("Meal"))
+            return "category_meal.png";
+        else if (category.equalsIgnoreCase("Sightseeing"))
+            return "category_sightseeing.png";
+        else if (category.equalsIgnoreCase("Conference"))
+            return "category_conference.png";
+        return null;
+    }
 }

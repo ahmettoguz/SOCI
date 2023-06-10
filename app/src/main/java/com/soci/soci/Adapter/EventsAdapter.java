@@ -11,24 +11,29 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.soci.soci.Business.MainSys;
 import com.soci.soci.Interfaces.Type;
 import com.soci.soci.Model.Event;
+import com.soci.soci.Model.Person;
+import com.soci.soci.R;
 
 import java.util.ArrayList;
 
 
 public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Type {
     private Context context;
+    private Person current_Person;
     private ArrayList<Event> recyclerItemValues;
     AdapterBehavior behavior;
 
     // interface for behavior
     interface AdapterBehavior {
-        void displayItem(Event event);
+        void displayEventItem(Event event);
     }
 
-    public EventsAdapter(Context context, ArrayList<Event> recyclerItemValues) {
+    public EventsAdapter(Context context, ArrayList<Event> recyclerItemValues, Person current_Person) {
         this.context = context;
+        this.current_Person = current_Person;
         this.recyclerItemValues = recyclerItemValues;
 
         // interface related
@@ -42,18 +47,19 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         if (viewType == RV_ITEM_OWNER) {
-            itemView = inflater.inflate(R.layout.recycler_birthday_item, parent, false);
-            Custom_RecyclerView_Adapter_ItemHolder_Birthday mViewHolder = new Custom_RecyclerView_Adapter_ItemHolder_Birthday(itemView);
+            itemView = inflater.inflate(R.layout.rv_events_owner, parent, false);
+            EventsAdapter_ItemHolder_Owner mViewHolder = new EventsAdapter_ItemHolder_Owner(itemView);
             return mViewHolder;
         } else if (viewType == RV_ITEM_PARTICIPATOR) {
-            itemView = inflater.inflate(R.layout.recycler_wedding_item, parent, false);
-            Custom_RecyclerView_Adapter_ItemHolder_Wedding mViewHolder = new Custom_RecyclerView_Adapter_ItemHolder_Wedding(itemView);
+            itemView = inflater.inflate(R.layout.rv_events_participated, parent, false);
+            EventsAdapter_ItemHolder_Participated mViewHolder = new EventsAdapter_ItemHolder_Participated(itemView);
             return mViewHolder;
         } else if (viewType == RV_ITEM_NORMAL) {
-            itemView = inflater.inflate(R.layout.recycler_wedding_item, parent, false);
-            Custom_RecyclerView_Adapter_ItemHolder_Wedding mViewHolder = new Custom_RecyclerView_Adapter_ItemHolder_Wedding(itemView);
+            itemView = inflater.inflate(R.layout.rv_events_normal, parent, false);
+            EventsAdapter_ItemHolder_Normal mViewHolder = new EventsAdapter_ItemHolder_Normal(itemView);
             return mViewHolder;
         }
+        return null;
     }
 
     @Override
@@ -61,55 +67,58 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         final Event currentItem = recyclerItemValues.get(position);
 
         if (getItemViewType(position) == RV_ITEM_OWNER) {
-            Custom_RecyclerView_Adapter_ItemHolder_Birthday itemView = (Custom_RecyclerView_Adapter_ItemHolder_Birthday) holder;
+            EventsAdapter_ItemHolder_Owner itemView = (EventsAdapter_ItemHolder_Owner) holder;
+            itemView.name.setText(currentItem.getName());
 
-            itemView.companyName.setText(((Birthday) currentItem).getCompanyName());
-            itemView.concept.setText(((Birthday) currentItem).getConcept());
-            itemView.numOfGuest.setText(((Birthday) currentItem).getNumOfGuest() + "");
-            itemView.img.setImageResource(curentItem.getImgId());
+            String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
+            //convert image name to id
+            int imgId = context.getResources().getIdentifier(imgName, "drawable",
+                    context.getPackageName());
+
+            itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    behavior.displayItem(currentItem);
+                    behavior.displayEventItem(currentItem);
                 }
             });
 
         } else if (getItemViewType(position) == RV_ITEM_PARTICIPATOR) {
-            Custom_RecyclerView_Adapter_ItemHolder_Wedding itemView = (Custom_RecyclerView_Adapter_ItemHolder_Wedding) holder;
-            itemView.companyName.setText(((Wedding) currentItem).getCompanyName());
-            itemView.weddingType.setText(((Wedding) currentItem).getType());
-            itemView.img.setImageResource(curentItem.getImgId());
+            EventsAdapter_ItemHolder_Participated itemView = (EventsAdapter_ItemHolder_Participated) holder;
+            itemView.name.setText(currentItem.getName());
 
-            String imgName = ((Wedding) currentItem).getDecorationColor().toLowerCase();
+            String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
+            //convert image name to id
             int imgId = context.getResources().getIdentifier(imgName, "drawable",
                     context.getPackageName());
-            itemView.iv.setImageResource(imgId);
+
+            itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    behavior.displayItem(currentItem);
+                    behavior.displayEventItem(currentItem);
                 }
             });
         } else if (getItemViewType(position) == RV_ITEM_NORMAL) {
-            Custom_RecyclerView_Adapter_ItemHolder_Wedding itemView = (Custom_RecyclerView_Adapter_ItemHolder_Wedding) holder;
-            itemView.companyName.setText(((Wedding) currentItem).getCompanyName());
-            itemView.weddingType.setText(((Wedding) currentItem).getType());
-            itemView.img.setImageResource(curentItem.getImgId());
+            EventsAdapter_ItemHolder_Normal itemView = (EventsAdapter_ItemHolder_Normal) holder;
+            itemView.name.setText(currentItem.getName());
 
-            String imgName = ((Wedding) currentItem).getDecorationColor().toLowerCase();
+            String imgName = MainSys.getImgNameFromCategory(currentItem.getCategory());
+            //convert image name to id
             int imgId = context.getResources().getIdentifier(imgName, "drawable",
                     context.getPackageName());
-            itemView.iv.setImageResource(imgId);
+
+            itemView.categoryImage.setImageResource(imgId);
 
             // click event with interface behavior
             itemView.parentLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    behavior.displayItem(currentItem);
+                    behavior.displayEventItem(currentItem);
                 }
             });
         }
@@ -122,26 +131,53 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public int getItemViewType(int position) {
-        Event org = recyclerItemValues.get(position);
-        if (org instanceof Birthday)
-            return BIRTHDAY_TYPE;
+        Event event = recyclerItemValues.get(position);
+        int eventId = event.getId();
+
+        if (current_Person.getCreated_Events().contains(eventId))
+            return RV_ITEM_OWNER;
+        else if (current_Person.getParticipated_Events().contains(eventId))
+            return RV_ITEM_PARTICIPATOR;
         else
-            return WEDDING_TYPE;
+            return RV_ITEM_NORMAL;
     }
 
     // Create that class according to the xml layout file used.
     class EventsAdapter_ItemHolder_Owner extends RecyclerView.ViewHolder {
-        TextView companyName, concept, numOfGuest;
-
+        ImageView categoryImage;
+        TextView name;
         ConstraintLayout parentLayout;
 
         public EventsAdapter_ItemHolder_Owner(@NonNull View itemView) {
             super(itemView);
-            companyName = itemView.findViewById(R.id.tvItemBirthdayCompanyName);
-            concept = itemView.findViewById(R.id.tvItemBirthdayConcept);
-            numOfGuest = itemView.findViewById(R.id.tvItemBirthdaayNumOfGuest);
+            name = itemView.findViewById(R.id.rvEventsOwner_Tv_Name);
+            parentLayout = itemView.findViewById(R.id.rvEventsOwner_Ll);
+        }
+    }
 
-            parentLayout = itemView.findViewById(R.id.itemBirthdayConstraintLayout);
+    // Create that class according to the xml layout file used.
+    class EventsAdapter_ItemHolder_Participated extends RecyclerView.ViewHolder {
+        ImageView categoryImage;
+        TextView name;
+        ConstraintLayout parentLayout;
+
+        public EventsAdapter_ItemHolder_Participated(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.rvEventsParticipated_Tv_Name);
+            parentLayout = itemView.findViewById(R.id.rvEventsParticipated_Ll);
+        }
+    }
+
+    // Create that class according to the xml layout file used.
+    class EventsAdapter_ItemHolder_Normal extends RecyclerView.ViewHolder {
+        ImageView categoryImage;
+        TextView name;
+        ConstraintLayout parentLayout;
+
+        public EventsAdapter_ItemHolder_Normal(@NonNull View itemView) {
+            super(itemView);
+            name = itemView.findViewById(R.id.rvEventsNormal_Tv_Name);
+            parentLayout = itemView.findViewById(R.id.rvEventsNormal_Ll);
         }
     }
 
