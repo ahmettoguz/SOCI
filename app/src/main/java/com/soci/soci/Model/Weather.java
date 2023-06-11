@@ -6,7 +6,7 @@ public class Weather {
     ArrayList<String> wxPhraseLongDay;
     ArrayList<Integer> temperatureMax;
     ArrayList<Integer> temperatureMin;
-    ArrayList<Double> rain24Hour;
+
 
     @Override
     public String toString() {
@@ -14,15 +14,13 @@ public class Weather {
                 "wxPhraseLongDay=" + wxPhraseLongDay + "\n" +
                 ", temperatureMax=" + temperatureMax + "\n" +
                 ", temperatureMin=" + temperatureMin + "\n" +
-                ", rain24Hour=" + rain24Hour + "\n" +
                 '}';
     }
 
-    public Weather(ArrayList<String> wxPhraseLongDay, ArrayList<Integer> temperatureMax, ArrayList<Integer> temperatureMin, ArrayList<Double> rain24Hour) {
+    public Weather(ArrayList<String> wxPhraseLongDay, ArrayList<Integer> temperatureMax, ArrayList<Integer> temperatureMin) {
         this.wxPhraseLongDay = wxPhraseLongDay;
         this.temperatureMax = temperatureMax;
         this.temperatureMin = temperatureMin;
-        this.rain24Hour = rain24Hour;
     }
 
     public ArrayList<String> getWxPhraseLongDay() {
@@ -47,13 +45,5 @@ public class Weather {
 
     public void setTemperatureMin(ArrayList<Integer> temperatureMin) {
         this.temperatureMin = temperatureMin;
-    }
-
-    public ArrayList<Double> getRain24Hour() {
-        return rain24Hour;
-    }
-
-    public void setRain24Hour(ArrayList<Double> rain24Hour) {
-        this.rain24Hour = rain24Hour;
     }
 }
