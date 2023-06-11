@@ -13,4 +13,10 @@
         <item>Sightseeing</item>
         <item>Conference</item>
     </array>
+
+    <array name="filter_user_event">
+        <item>All</item>
+        <item>Participated Events</item>
+        <item>Owned Events</item>
+    </array>
 </resources>
