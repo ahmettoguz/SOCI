@@ -12,4 +12,5 @@
     <string name="male">Male</string>
     <string name="Female">Female</string>
     <string name="my_events">My Events</string>
+    <string name="user_informations">User Informations</string>
 </resources>

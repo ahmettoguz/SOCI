@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background_theme"
     tools:context=".Ui.UserEventFragment">
 
     <TextView
@@ -24,7 +25,7 @@
         android:id="@+id/userEvent_Sp_Filter"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp40"
-        android:background="@drawable/shadow"
+
         android:layout_marginHorizontal="@dimen/dp10"
         android:layout_marginTop="@dimen/dp10"
         android:entries="@array/filter_user_event" />

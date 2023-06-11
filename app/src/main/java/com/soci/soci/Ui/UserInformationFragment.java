@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.soci.soci.Business.MainSys;
+import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.FragmentEventsBinding;
 import com.soci.soci.databinding.FragmentUserInformationBinding;
 
@@ -37,13 +39,24 @@ public class UserInformationFragment extends Fragment {
         FragmentUserInformationBinding binding = FragmentUserInformationBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        binding.userInfoBtnTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(ctx, "working." + current_Person_id, Toast.LENGTH_SHORT).show();
-            }
-        });
+        // get current person
+        Person current_Person = MainSys.getPersonById(current_Person_id);
+
+        fillInformations(ctx, binding, current_Person);
 
         return view;
     }
+
+    private void fillInformations(Context ctx, FragmentUserInformationBinding binding, Person current_Person) {
+        binding.userInformationTvName.setText(binding.userInformationTvName.getText().toString() + current_Person.getName());
+        binding.userInformationTvSurname.setText(binding.userInformationTvSurname.getText().toString() + current_Person.getSurname());
+        binding.userInformationTvEmail.setText(binding.userInformationTvEmail.getText().toString() + current_Person.getEmail());
+        binding.userInformationTvPhone.setText(binding.userInformationTvPhone.getText().toString() + current_Person.getPhone());
+
+
+        String imgName = current_Person.getGender().equalsIgnoreCase("female") ? "female" : "male";
+        int imgId = MainSys.convertImageNameToId(ctx, imgName);
+        binding.userInformationIvGender.setImageResource(imgId);
+    }
+
 }
