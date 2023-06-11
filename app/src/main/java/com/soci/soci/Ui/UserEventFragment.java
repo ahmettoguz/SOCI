@@ -29,6 +29,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,10 +106,24 @@ public class UserEventFragment extends Fragment {
                         Weather weather = response.body();
 
                         if (weather != null) {
+
+                            // convert weather
+                            ArrayList<String> wxPhraseLongDay = new ArrayList<>();
+                            ArrayList<Integer> temperatureMax = new ArrayList<>();
+                            ArrayList<Integer> temperatureMin = new ArrayList<>();
+
+                            for (int i = 2; i < 5; i++) {
+                                wxPhraseLongDay.add(weather.getWxPhraseLongDay().get(i));
+                                temperatureMax.add(MainSys.fahrenheitToCelsius(weather.getTemperatureMax().get(i)));
+                                temperatureMin.add(MainSys.fahrenheitToCelsius(weather.getTemperatureMin().get(i)));
+                            }
+                            weather = new Weather(wxPhraseLongDay, temperatureMax, temperatureMin);
+
                             Log.d("ahmet weather", weather.toString());
                         } else
                             Toast.makeText(ctx, "Not Found", Toast.LENGTH_LONG).show();
                     }
+
                     @Override
                     public void onFailure(Call<Weather> call, Throwable t) {
                         Log.d("RESPONSE", "Failure" + t.getMessage());

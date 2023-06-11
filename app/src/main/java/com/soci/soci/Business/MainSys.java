@@ -174,7 +174,7 @@ public class MainSys {
         return null;
     }
 
-    public static int FahrenheitToCelsius(int fahrenheit) {
+    public static int fahrenheitToCelsius(int fahrenheit) {
         return (int) Math.round((fahrenheit - 32) / 1.8);
     }
 }
