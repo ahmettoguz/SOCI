@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +22,7 @@ import com.soci.soci.Adapter.EventsAdapter;
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Model.Person;
 import com.soci.soci.Model.Weather;
-import com.soci.soci.databinding.FragmentEventsBinding;
+import com.soci.soci.R;
 import com.soci.soci.databinding.FragmentUserEventBinding;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,7 +123,10 @@ public class UserEventFragment extends Fragment {
                             }
                             weather = new Weather(wxPhraseLongDay, temperatureMax, temperatureMin);
 
-                            Log.d("ahmet weather", weather.toString());
+                            Log.d("ahmet weather json", weather.toString());
+
+                            createShowDialogWeather(weather);
+
                         } else
                             Toast.makeText(ctx, "Not Found", Toast.LENGTH_LONG).show();
                     }
@@ -146,25 +153,69 @@ public class UserEventFragment extends Fragment {
         // recycler view related end
     }
 
-//    public void createShowDialog() {
-//        Dialog customDialog = new Dialog(ctx);
-//        customDialog.setContentView(R.layout.my_custom_dialog);
-//
-//        TextView tv = customDialog.findViewById(R.id.tv_dialog);
-//        ImageView iv = customDialog.findViewById(R.id.iv_dialog);
-//        Button btnClose = customDialog.findViewById(R.id.btn_dialog_close);
-//
-//        tv.setText("ahmet");
-//        iv.setImageResource(R.drawable.ahmet1);
-//
-//        btnClose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                customDialog.dismiss();
-//            }
-//        });
-//
-//        customDialog.show();
-//    }
+    public void createShowDialogWeather(Weather weather) {
+        Dialog customDialog = new Dialog(ctx);
+        customDialog.setContentView(R.layout.dialog_weather);
+        Button btnClose = customDialog.findViewById(R.id.dialogWeather_Btn_Close);
 
+        // Get the current date
+        LocalDate currentDate = LocalDate.now();
+
+        // Define the desired date format
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+        for (int i = 1; i <= weather.getWxPhraseLongDay().size(); i++) {
+            // Create the ID dynamically
+            int textViewId = getResources().getIdentifier("dialogWeather_Tv" + i + "_Tv", "id", ctx.getPackageName());
+
+            // Create the ID dynamically
+            int imageViewId = getResources().getIdentifier("dialogWeather_Iv" + i + "_Img", "id", ctx.getPackageName());
+
+            // Find the TextView by the dynamically created ID
+            TextView tv = customDialog.findViewById(textViewId);
+            // Find the ImageView by the dynamically created ID
+            ImageView iv = customDialog.findViewById(imageViewId);
+
+            //image related
+            String imgName = "weather_cloud";
+            if (weather.getWxPhraseLongDay().get(i - 1).toString().equalsIgnoreCase("PM Thunderstorms"))
+                imgName = "weather_thunder";
+            else if (weather.getWxPhraseLongDay().get(i - 1).toString().equalsIgnoreCase("Partly Cloudy"))
+                imgName = "weather_cloudy";
+            else {
+                imgName = "weather_cloud";
+            }
+            int imgId = MainSys.convertImageNameToId(ctx, imgName);
+            iv.setImageResource(imgId);
+
+            // tv related
+
+
+            // Format the next date using the formatter
+            LocalDate nextDate = currentDate.plusDays(i - 1);
+            String formattedDate = nextDate.format(formatter);
+
+            String output = formattedDate.toString();
+            output += "\n";
+            output += weather.getWxPhraseLongDay().get(i - 1).toString();
+            output += "\nMax Temperature: ";
+            output += weather.getTemperatureMax().get(i - 1).toString();
+            output += "°C\nMin Temperature: ";
+            output += weather.getTemperatureMin().get(i - 1).toString();
+            output += "°C";
+
+
+            tv.setText(output);
+
+        }
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customDialog.dismiss();
+            }
+        });
+
+        customDialog.show();
+    }
 }

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/background_theme_1"
-    android:orientation="vertical"
-    android:layout_margin="@dimen/dp20">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_width="360dp"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="@dimen/dp10"
         android:layout_marginVertical="@dimen/dp10"
         android:background="@drawable/shadow"
         android:orientation="horizontal">
@@ -18,7 +17,7 @@
         <ImageView
             android:id="@+id/dialogWeather_Iv1_Img"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:paddingHorizontal="@dimen/dp5"
             android:paddingVertical="@dimen/dp5"
             app:srcCompat="@drawable/weather_cloudy" />
@@ -26,10 +25,9 @@
         <TextView
             android:id="@+id/dialogWeather_Tv1_Tv"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp10"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:text="..."
             android:textColor="@color/black"
             android:textSize="@dimen/text_Size" />
@@ -37,9 +35,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_width="360dp"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="@dimen/dp10"
         android:layout_marginVertical="@dimen/dp10"
         android:background="@drawable/shadow"
         android:orientation="horizontal">
@@ -47,7 +45,7 @@
         <ImageView
             android:id="@+id/dialogWeather_Iv2_Img"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:paddingHorizontal="@dimen/dp5"
             android:paddingVertical="@dimen/dp5"
             app:srcCompat="@drawable/weather_cloudy" />
@@ -55,10 +53,9 @@
         <TextView
             android:id="@+id/dialogWeather_Tv2_Tv"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp10"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:text="..."
             android:textColor="@color/black"
             android:textSize="@dimen/text_Size" />
@@ -66,9 +63,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_width="360dp"
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="@dimen/dp10"
         android:layout_marginVertical="@dimen/dp10"
         android:background="@drawable/shadow"
         android:orientation="horizontal">
@@ -76,7 +73,7 @@
         <ImageView
             android:id="@+id/dialogWeather_Iv3_Img"
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:paddingHorizontal="@dimen/dp5"
             android:paddingVertical="@dimen/dp5"
             app:srcCompat="@drawable/weather_cloudy" />
@@ -84,10 +81,9 @@
         <TextView
             android:id="@+id/dialogWeather_Tv3_Tv"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp10"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:text="..."
             android:textColor="@color/black"
             android:textSize="@dimen/text_Size" />
@@ -95,7 +91,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/register_btn_Register"
+        android:id="@+id/dialogWeather_Btn_Close"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
