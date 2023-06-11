@@ -47,7 +47,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/register_btn_egister"
+            android:id="@+id/userEvent_Btn_Weather"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -61,7 +61,7 @@
             android:textSize="@dimen/text_Size" />
 
         <Button
-            android:id="@+id/register_btn_Register"
+            android:id="@+id/userEvent_Btn_Add"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
