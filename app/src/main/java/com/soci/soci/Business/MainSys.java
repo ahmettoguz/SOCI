@@ -145,4 +145,32 @@ public class MainSys {
         }
         return returnEvents;
     }
+
+    public static ArrayList<Event> getEventsAsArrayListFromParticipation(String participation, Person person) {
+        ArrayList<Event> returnEvents = new ArrayList<>();
+
+        // add participated events
+        if (participation.equalsIgnoreCase("all") || participation.equalsIgnoreCase("Participated Events")) {
+            for (Integer event_id : person.getParticipated_Events()) {
+                returnEvents.add(getEventFromId(event_id));
+            }
+        }
+
+        // add owner events
+        if (participation.equalsIgnoreCase("all") || participation.equalsIgnoreCase("Owned Events")) {
+            for (Integer event_id : person.getCreated_Events()) {
+                returnEvents.add(getEventFromId(event_id));
+            }
+        }
+
+        return returnEvents;
+    }
+
+    public static Event getEventFromId(int id) {
+        for (Event event : events) {
+            if (event.getId() == id)
+                return event;
+        }
+        return null;
+    }
 }
