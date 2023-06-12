@@ -87,24 +87,87 @@ public class DisplayEventActivity extends AppCompatActivity {
         binding.eventTVEndDate.setText(current_Event.getEnd_Date());
         binding.eventTVPlace.setText(current_Event.getLocation());
 
+        // quota related
         String quota = current_Event.getMax_Participant() == -1 ? "No Limit" : current_Event.getMax_Participant() + "";
 
+        // set quota
         binding.eventTVQuota.setText(binding.eventTVQuota.getText().toString() + participated_People_Count + "/" + quota);
 
-        if (person_Role == OWNER)
-            binding.eventTVQuota.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.OrangeRed));
-        else if (person_Role == PARTICIPATOR)
+        // set quota color
+        if (person_Role == OWNER) {
+            binding.eventTVQuota.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.Orange));
+        } else if (person_Role == PARTICIPATOR) {
             binding.eventTVQuota.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.BlueViolet));
-        else {
+        } else {
             if (quota.equalsIgnoreCase("No Limit") || Integer.parseInt(quota) != participated_People_Count) {
                 binding.eventTVQuota.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.Green));
-            } else
+            } else {
                 binding.eventTVQuota.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.Red));
+            }
         }
 
-
+        // set image
         String imgName = MainSys.getImgNameFromCategory(current_Event.getCategory());
         int imgId = MainSys.convertImageNameToId(this, imgName);
         binding.eventIvCategory.setImageResource(imgId);
+
+        // set button image
+        int redColor = ContextCompat.getColor(this, R.color.Red);
+        int greenColor = ContextCompat.getColor(this, R.color.Green);
+        int orangeColor = ContextCompat.getColor(this, R.color.Orange);
+
+        if (binding.eventTVQuota.getCurrentTextColor() == redColor || binding.eventTVQuota.getCurrentTextColor() == greenColor) {
+            imgName = "action_add_event";
+        } else {
+            imgName = "action_remove_event";
+        }
+        imgId = MainSys.convertImageNameToId(this, imgName);
+        binding.eventBtnJoinLeave.setImageResource(imgId);
+
+        final int final_Person_Role = person_Role;
+
+        // update btn event
+        binding.eventBtnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (final_Person_Role == OWNER) {
+                    // update eklenicek
+                } else {
+                    MainSys.msg(DisplayEventActivity.this, "Just owner can update event!");
+                }
+            }
+        });
+
+        // join leave button event
+        binding.eventBtnJoinLeave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (final_Person_Role == OWNER) {
+                    MainSys.msg(DisplayEventActivity.this, "Owner cannot leave the event!");
+                } else if (final_Person_Role == PARTICIPATOR) {
+//                    ... ekle çıkar gelicek
+                } else if (final_Person_Role == NORMAL && binding.eventTVQuota.getCurrentTextColor() == greenColor)
+                {
+//                    add
+                }
+            }
+        });
+
+        // delete button event
+        binding.eventBtnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(final_Person_Role == OWNER){
+                    MainSys.people.remove(current_Event);
+                }
+                else{
+                    MainSys.msg(DisplayEventActivity.this, "Just owner can delete event!");
+                }
+            }
+        });
+
+
+        // click events
+//        binding.eventBtnJoinLeave
     }
 }
