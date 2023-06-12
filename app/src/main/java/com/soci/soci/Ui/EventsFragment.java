@@ -27,8 +27,9 @@ public class EventsFragment extends Fragment {
 
     Context ctx;
     int current_Person_id;
-
+    FragmentEventsBinding binding;
     EventsFragmentInterface fragmentInterfaceListener;
+    Person current_Person;
 
     public EventsFragment(Context ctx, int current_Person_id) {
         this.ctx = ctx;
@@ -37,6 +38,7 @@ public class EventsFragment extends Fragment {
         if (ctx instanceof EventsFragmentInterface)
             fragmentInterfaceListener = (EventsFragmentInterface) ctx;
     }
+
 
     interface EventsFragmentInterface {
         public void performEventsFragment();
@@ -51,11 +53,11 @@ public class EventsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentEventsBinding binding = FragmentEventsBinding.inflate(inflater, container, false);
+        binding = FragmentEventsBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
         // get current person
-        Person current_Person = MainSys.getPersonById(current_Person_id);
+        current_Person = MainSys.getPersonById(current_Person_id);
 
         // recycler view
         fillRecyclerView(binding, current_Person, "all");

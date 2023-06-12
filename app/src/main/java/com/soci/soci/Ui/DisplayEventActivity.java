@@ -31,6 +31,7 @@ public class DisplayEventActivity extends AppCompatActivity {
     final int PARTICIPATOR = 2;
     final int NORMAL = 3;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,8 +147,7 @@ public class DisplayEventActivity extends AppCompatActivity {
                     MainSys.msg(DisplayEventActivity.this, "Owner cannot leave the event!");
                 } else if (final_Person_Role == PARTICIPATOR) {
 //                    ... ekle çıkar gelicek
-                } else if (final_Person_Role == NORMAL && binding.eventTVQuota.getCurrentTextColor() == greenColor)
-                {
+                } else if (final_Person_Role == NORMAL && binding.eventTVQuota.getCurrentTextColor() == greenColor) {
 //                    add
                 }
             }
@@ -157,10 +157,12 @@ public class DisplayEventActivity extends AppCompatActivity {
         binding.eventBtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(final_Person_Role == OWNER){
-                    MainSys.people.remove(current_Event);
-                }
-                else{
+                if (final_Person_Role == OWNER) {
+                    MainSys.events.remove(current_Event);
+                    MainSys.msg(DisplayEventActivity.this, "Event is deleted.");
+
+                    finish();
+                } else {
                     MainSys.msg(DisplayEventActivity.this, "Just owner can delete event!");
                 }
             }
