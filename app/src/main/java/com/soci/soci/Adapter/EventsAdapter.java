@@ -1,10 +1,12 @@
 package com.soci.soci.Adapter;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -233,6 +235,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ImageView eventBtnJoinLeave = customDialog.findViewById(R.id.event_Btn_JoinLeave);
         ImageView eventBtnUpdate = customDialog.findViewById(R.id.event_Btn_Update);
         ImageView eventBtnDelete = customDialog.findViewById(R.id.event_Btn_Delete);
+        Button eventBtnCall = customDialog.findViewById(R.id.event_Btn_Call);
 
 
         eventTVName.setText(current_Event.getName());
@@ -279,12 +282,37 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         imgId = MainSys.convertImageNameToId(context, imgName);
         eventBtnJoinLeave.setImageResource(imgId);
 
+
+        // call event
+        eventBtnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (person_Role == OWNER) {
+                    MainSys.msg(context, "This event is belonging to you.");
+                } else {
+                    String phone_num = "-1";
+
+                    for (Person p : MainSys.people) {
+                        for (Integer owner_id : p.getCreated_Events()) {
+                            if (owner_id == current_Event.getId())
+                                phone_num = p.getPhone() + "";
+                        }
+                    }
+                    if (phone_num.equalsIgnoreCase("-1")) {
+                        MainSys.msg(context, "Phone number is not shared.");
+                    } else {
+                        MainSys.makePhoneCall((Activity) context, phone_num);
+                    }
+                }
+            }
+        });
+
         // update btn event
         eventBtnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (person_Role == OWNER) {
-                    // update eklenicek
+                    MainSys.msg(context, "Update in progress.");
                 } else {
                     MainSys.msg(context, "Just owner can update event!");
                 }
