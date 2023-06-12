@@ -78,10 +78,10 @@ public class MainSys {
         event = new Event(7, 20, "Başakşehir Football Match Spectator", "Spectator", "Lets suppot Başakşehir.", "Istanbul/Başakşehir Fatih Terim Stadium", "06/06/2023-20.00", "06/06/2023-22.00");
         events.add(event);
 
-        event = new Event(8, -1, "Evening Meal", "Meal", "Lets go to evening meal together.", "Istanbul/Başakşehir Fatih Terim Stadium", "20/06/2023-19.00", "20/06/2023-21.00");
+        event = new Event(8, -1, "Evening Meal", "Meal", "Lets go to evening meal together.", "Bilkent/Şençam", "20/06/2023-19.00", "20/06/2023-21.00");
         events.add(event);
 
-        event = new Event(9, 20, "Volunteering Project Conference", "Conference", "Volunteering project meet up. Zoom link will be provided.", "Anakara/Bilkent/Conference Building B1", "27/06/2023-13.00", "27/06/2023-14.00");
+        event = new Event(9, 20, "Volunteering Project Conference", "Conference", "Volunteering project meet up. Zoom link will be provided.", "Anakara/Bilkent/Conference Building", "27/06/2023-13.00", "27/06/2023-14.00");
         events.add(event);
         // events end
     }
