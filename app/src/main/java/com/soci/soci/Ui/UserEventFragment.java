@@ -187,8 +187,9 @@ public class UserEventFragment extends Fragment {
     }
 
     public void updateUserEventFragment() {
-        fillRecyclerView("all");
-        MainSys.msg(ctx, "bura çalıştı1");
+        String participator = binding.userEventSpFilter.getSelectedItem().toString();
+        fillRecyclerView(participator);
+//        MainSys.msg(ctx,"fragment transaction");
     }
 
     public void createShowDialogWeather(Weather weather) {

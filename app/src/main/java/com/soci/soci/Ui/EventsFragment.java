@@ -99,7 +99,8 @@ public class EventsFragment extends Fragment {
     }
 
     public void updateEventsFragment() {
-        fillRecyclerView("all");
-        MainSys.msg(ctx,"bura çalıştı2");
+        String category = binding.eventsSpCategories.getSelectedItem().toString();
+        fillRecyclerView(category);
+//        MainSys.msg(ctx,"fragment transaction");
     }
 }

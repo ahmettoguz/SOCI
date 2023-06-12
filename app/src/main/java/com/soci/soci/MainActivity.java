@@ -118,11 +118,13 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
 
     @Override
     public void rvAdapterBehavior(String fragmentName) {
-        MainSys.msg(MainActivity.this, "rv interface'i çalıştı");
+//        MainSys.msg(MainActivity.this, "rv interface'i çalıştı");
         if (fragmentName.equalsIgnoreCase("userEventFragment")) {
             pagerAdapter.performInterfaceOperations("update events fragment rv");
+            pagerAdapter.performInterfaceOperations("update user event fragment rv");
 
         } else if (fragmentName.equalsIgnoreCase("eventsFragment")) {
+            pagerAdapter.performInterfaceOperations("update events fragment rv");
             pagerAdapter.performInterfaceOperations("update user event fragment rv");
         }
     }
