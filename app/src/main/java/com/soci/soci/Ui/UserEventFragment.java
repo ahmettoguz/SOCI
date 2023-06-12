@@ -49,11 +49,19 @@ public class UserEventFragment extends Fragment {
     Context ctx;
     int current_Person_id;
 
+    UserEventInterface interfaceListener;
+
+    public interface UserEventInterface {
+        public void userEventBehavior();
+    }
+
     public UserEventFragment(Context ctx, int current_Person_id) {
         this.ctx = ctx;
         this.current_Person_id = current_Person_id;
-    }
 
+        if (ctx instanceof UserEventInterface)
+            interfaceListener = (UserEventInterface) ctx;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +81,7 @@ public class UserEventFragment extends Fragment {
         // recycler view
         fillRecyclerView(binding, current_Person, "all");
 
+        // filtering event
         binding.userEventSpFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -86,6 +95,7 @@ public class UserEventFragment extends Fragment {
             }
         });
 
+        // weather event
         binding.userEventBtnWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +146,14 @@ public class UserEventFragment extends Fragment {
                         Log.d("RESPONSE", "Failure" + t.getMessage());
                     }
                 });
+            }
+        });
+
+        // add btn event
+        binding.userEventBtnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                interfaceListener.userEventBehavior();
             }
         });
 
