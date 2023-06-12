@@ -310,8 +310,9 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             public void onClick(View view) {
                 if (final_Person_Role == OWNER) {
                     MainSys.events.remove(current_Event);
-                    recyclerItemValues.remove(current_Event);
                     current_Person.getCreated_Events().remove(Integer.valueOf(current_Event.getId()));
+
+                    recyclerItemValues.remove(current_Event);
                     EventsAdapter.this.notifyDataSetChanged();
                     MainSys.msg(context, "Event is deleted.");
                     interfaceListener.rvAdapterBehavior(fragmentName);
