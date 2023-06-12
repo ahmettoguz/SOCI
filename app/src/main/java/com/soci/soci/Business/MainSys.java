@@ -1,8 +1,15 @@
 package com.soci.soci.Business;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
@@ -12,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class MainSys {
-
     public static ArrayList<Person> people = new ArrayList<>();
     public static ArrayList<Event> events = new ArrayList<>();
 
@@ -44,7 +50,7 @@ public class MainSys {
         created_Events = new ArrayList<>();
         Collections.addAll(created_Events, 7, 8);
         Collections.addAll(participated_Events, 1, 2);
-        p = new Person(4, "Zeynep", "Ergin", "zeynep@hotmail.com", "zeynep123", "05051112233", "Female", participated_Events, created_Events);
+        p = new Person(4, "Zeynep", "Ergin", "zeynep@hotmail.com", "zeynep123", "-1", "Female", participated_Events, created_Events);
         people.add(p);
 
         participated_Events = new ArrayList<>();
@@ -176,5 +182,17 @@ public class MainSys {
 
     public static int fahrenheitToCelsius(int fahrenheit) {
         return (int) Math.round((fahrenheit - 32) / 1.8);
+    }
+
+    public static void makePhoneCall(Activity activity, String phoneNumber) {
+        final int REQUEST_CALL_PERMISSION = 1;
+        if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.CALL_PHONE}, REQUEST_CALL_PERMISSION);
+        } else {
+            Uri uri = Uri.parse("tel:" + phoneNumber);
+            Intent intent = new Intent(Intent.ACTION_CALL, uri);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            activity.startActivity(intent);
+        }
     }
 }

@@ -1,10 +1,12 @@
 package com.soci.soci.Adapter;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,6 +30,9 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Person current_Person;
     private ArrayList<Event> recyclerItemValues;
     private String fragmentName;
+    int participated_People_Count;
+
+    int person_Role;
 
     RvAdapterInterface interfaceListener;
 
@@ -183,7 +188,6 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         createShowDialogEvent(event);
     }
 
-
     public void createShowDialogEvent(Event current_Event) {
         Dialog customDialog = new Dialog(context);
         customDialog.setContentView(R.layout.dialog_display_event);
@@ -194,7 +198,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
 
         // specify user role
-        int person_Role = NORMAL;
+        person_Role = NORMAL;
         for (Integer owned_id : current_Person.getCreated_Events()) {
             if (owned_id == current_Event.getId())
                 person_Role = OWNER;
@@ -206,7 +210,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
 
         // count participated user count
-        int participated_People_Count = 0;
+        participated_People_Count = 0;
 
         for (Person p : MainSys.people) {
             for (Integer p_id : p.getParticipated_Events()) {
@@ -231,6 +235,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         ImageView eventBtnJoinLeave = customDialog.findViewById(R.id.event_Btn_JoinLeave);
         ImageView eventBtnUpdate = customDialog.findViewById(R.id.event_Btn_Update);
         ImageView eventBtnDelete = customDialog.findViewById(R.id.event_Btn_Delete);
+        Button eventBtnCall = customDialog.findViewById(R.id.event_Btn_Call);
 
 
         eventTVName.setText(current_Event.getName());
@@ -267,6 +272,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         int redColor = ContextCompat.getColor(context, R.color.Red);
         int greenColor = ContextCompat.getColor(context, R.color.Green);
         int orangeColor = ContextCompat.getColor(context, R.color.Orange);
+        int blueViolet = ContextCompat.getColor(context, R.color.BlueViolet);
 
         if (eventTVQuota.getCurrentTextColor() == redColor || eventTVQuota.getCurrentTextColor() == greenColor) {
             imgName = "actn_add_event";
@@ -276,14 +282,37 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         imgId = MainSys.convertImageNameToId(context, imgName);
         eventBtnJoinLeave.setImageResource(imgId);
 
-        final int final_Person_Role = person_Role;
+
+        // call event
+        eventBtnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (person_Role == OWNER) {
+                    MainSys.msg(context, "This event is belonging to you.");
+                } else {
+                    String phone_num = "-1";
+
+                    for (Person p : MainSys.people) {
+                        for (Integer owner_id : p.getCreated_Events()) {
+                            if (owner_id == current_Event.getId())
+                                phone_num = p.getPhone() + "";
+                        }
+                    }
+                    if (phone_num.equalsIgnoreCase("-1")) {
+                        MainSys.msg(context, "Phone number is not shared.");
+                    } else {
+                        MainSys.makePhoneCall((Activity) context, phone_num);
+                    }
+                }
+            }
+        });
 
         // update btn event
         eventBtnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (final_Person_Role == OWNER) {
-                    // update eklenicek
+                if (person_Role == OWNER) {
+                    MainSys.msg(context, "Update in progress.");
                 } else {
                     MainSys.msg(context, "Just owner can update event!");
                 }
@@ -294,12 +323,36 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         eventBtnJoinLeave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (final_Person_Role == OWNER) {
+                if (person_Role == OWNER) {
                     MainSys.msg(context, "Owner cannot leave the event!");
-                } else if (final_Person_Role == PARTICIPATOR) {
-//                    ... ekle çıkar gelicek
-                } else if (final_Person_Role == NORMAL && eventTVQuota.getCurrentTextColor() == greenColor) {
-//                    add
+                } else if (person_Role == PARTICIPATOR) {
+                    person_Role = NORMAL;
+
+                    eventTVQuota.setTextColor(greenColor);
+
+                    participated_People_Count--;
+                    eventTVQuota.setText("Quota : " + participated_People_Count + "/" + quota);
+
+                    String imgName = "actn_add_event";
+                    int img_ID = MainSys.convertImageNameToId(context, imgName);
+                    eventBtnJoinLeave.setImageResource(img_ID);
+                    current_Person.getParticipated_Events().remove(Integer.valueOf(current_Event.getId()));
+
+                    interfaceListener.rvAdapterBehavior(fragmentName);
+                } else if (person_Role == NORMAL && eventTVQuota.getCurrentTextColor() == greenColor) {
+                    person_Role = PARTICIPATOR;
+
+                    eventTVQuota.setTextColor(blueViolet);
+
+                    participated_People_Count++;
+                    eventTVQuota.setText("Quota : " + participated_People_Count + "/" + quota);
+
+                    String imgName = "actn_remove_event";
+                    int img_ID = MainSys.convertImageNameToId(context, imgName);
+                    eventBtnJoinLeave.setImageResource(img_ID);
+
+                    current_Person.getParticipated_Events().add(current_Event.getId());
+                    interfaceListener.rvAdapterBehavior(fragmentName);
                 }
             }
         });
@@ -308,7 +361,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         eventBtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (final_Person_Role == OWNER) {
+                if (person_Role == OWNER) {
                     MainSys.events.remove(current_Event);
                     current_Person.getCreated_Events().remove(Integer.valueOf(current_Event.getId()));
                     MainSys.msg(context, "Event is deleted.");
@@ -323,5 +376,4 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         customDialog.show();
     }
-
 }

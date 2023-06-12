@@ -193,7 +193,7 @@
 
 
             <Button
-                android:id="@+id/userEvent_Btn_Add"
+                android:id="@+id/event_Btn_Call"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
