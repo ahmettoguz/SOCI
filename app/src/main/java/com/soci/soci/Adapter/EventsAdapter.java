@@ -258,9 +258,9 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         int orangeColor = ContextCompat.getColor(context, R.color.Orange);
 
         if (eventTVQuota.getCurrentTextColor() == redColor || eventTVQuota.getCurrentTextColor() == greenColor) {
-            imgName = "action_add_event";
+            imgName = "actn_add_event";
         } else {
-            imgName = "action_remove_event";
+            imgName = "actn_remove_event";
         }
         imgId = MainSys.convertImageNameToId(context, imgName);
         eventBtnJoinLeave.setImageResource(imgId);
