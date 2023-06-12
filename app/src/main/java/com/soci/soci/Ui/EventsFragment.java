@@ -28,20 +28,20 @@ public class EventsFragment extends Fragment {
     Context ctx;
     int current_Person_id;
     FragmentEventsBinding binding;
-    EventsFragmentInterface fragmentInterfaceListener;
     Person current_Person;
+
+    EventsFragmentInterface interfaceListener;
+
+    public interface EventsFragmentInterface {
+        public void eventsFragmentBehavior();
+    }
 
     public EventsFragment(Context ctx, int current_Person_id) {
         this.ctx = ctx;
         this.current_Person_id = current_Person_id;
 
         if (ctx instanceof EventsFragmentInterface)
-            fragmentInterfaceListener = (EventsFragmentInterface) ctx;
-    }
-
-
-    interface EventsFragmentInterface {
-        public void performEventsFragment();
+            interfaceListener = (EventsFragmentInterface) ctx;
     }
 
     @Override
@@ -66,6 +66,7 @@ public class EventsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(ctx, "Add clicked", Toast.LENGTH_SHORT).show();
+                interfaceListener.eventsFragmentBehavior();
             }
         });
 

@@ -15,11 +15,12 @@ import com.google.android.material.tabs.TabLayout;
 import com.soci.soci.Adapter.PageSwiperAdapter;
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Model.Person;
+import com.soci.soci.Ui.EventsFragment;
 import com.soci.soci.Ui.UserEventFragment;
 import com.soci.soci.databinding.ActivityMainBinding;
 
 
-public class MainActivity extends AppCompatActivity implements UserEventFragment.UserEventInterface {
+public class MainActivity extends AppCompatActivity implements UserEventFragment.UserEventInterface, EventsFragment.EventsFragmentInterface {
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
     ActivityMainBinding binding;
@@ -107,5 +108,10 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
     @Override
     public void userEventBehavior() {
         pagerAdapter.performInterfaceOperations("update events fragment rv");
+    }
+
+    @Override
+    public void eventsFragmentBehavior() {
+        pagerAdapter.performInterfaceOperations("update user event fragment rv");
     }
 }

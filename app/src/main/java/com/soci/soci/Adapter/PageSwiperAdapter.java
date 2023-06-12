@@ -43,7 +43,7 @@ public class PageSwiperAdapter extends FragmentStateAdapter {
                 return eventsFragment;
             case 2:
                 userInformationFragment = new UserInformationFragment(ctx, current_Person_id);
-                return userEventFragment;
+                return userInformationFragment;
             default:
                 return null;
         }
@@ -58,6 +58,9 @@ public class PageSwiperAdapter extends FragmentStateAdapter {
         if (operation.equalsIgnoreCase("update events fragment rv")) {
             MainSys.msg(ctx, "interface çalıştı.");
         }
-
+        else if (operation.equalsIgnoreCase("update user event fragment rv")) {
+            MainSys.msg(ctx, "interface çalıştı.1");
+        }
     }
+
 }
