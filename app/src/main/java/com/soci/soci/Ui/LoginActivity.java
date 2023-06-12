@@ -11,16 +11,24 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.soci.soci.Business.MainSys;
+import com.soci.soci.Database.DatabaseHelper;
 import com.soci.soci.MainActivity;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.ActivityLoginBinding;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +47,23 @@ public class LoginActivity extends AppCompatActivity {
         // lock orientation
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        // prepare data - will change with database
-        MainSys.prepareData();
+        // database helper for database opertaions
+        try {
+            String fileToDatabase = "/data/data/" + getPackageName() + "/databases/" + DatabaseHelper.DATABASE_NAME;
+            File file = new File(fileToDatabase);
+            File pathToDatabasesFolder = new File("/data/data/" + getPackageName() + "/databases/");
+            if (!file.exists()) {
+                pathToDatabasesFolder.mkdirs();
+                CopyDB(getResources().getAssets().open(DatabaseHelper.DATABASE_NAME),
+                        new FileOutputStream(fileToDatabase));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        dbHelper = new DatabaseHelper(this);
+        MainSys.prepareDatabaseData(dbHelper);
 
         // fill data not to put extra effort
         fillForm();
@@ -53,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (result.get("success").equalsIgnoreCase("true")) {
                     // play sound
-                    MainSys.playSound(LoginActivity.this,"positive");
+                    MainSys.playSound(LoginActivity.this, "positive");
 
                     Intent sendIntent = new Intent(LoginActivity.this, MainActivity.class);
                     sendIntent.putExtra("person_id", Integer.parseInt(result.get("id")));
@@ -77,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void fillForm() {
         binding.loginEtEmail.setText("ahmet@hotmail.com");
-        binding.loginEtPassword.setText("ahmet123");
+        binding.loginEtPassword.setText("1234");
     }
 
     private Map loginOperation() {
@@ -113,4 +136,17 @@ public class LoginActivity extends AppCompatActivity {
         output.put("message", "Login failed.");
         return output;
     }
+
+    public void CopyDB(InputStream inputStream, OutputStream outputStream) throws IOException {
+        // Copy 1K bytes at a time
+        byte[] buffer = new byte[1024];
+        int length;
+
+        while ((length = inputStream.read(buffer)) > 0) {
+            outputStream.write(buffer, 0, length);
+        }
+        inputStream.close();
+        outputStream.close();
+    }
+
 }
