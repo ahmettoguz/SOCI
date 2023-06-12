@@ -29,29 +29,29 @@ public class MainSys {
         // people
         ArrayList<Integer> participated_Events = new ArrayList<>();
         ArrayList<Integer> created_Events = new ArrayList<>();
-        Collections.addAll(created_Events, 1, 2);
-        Collections.addAll(participated_Events, 3, 4, 5);
+        Collections.addAll(created_Events, 1, 2, 12);
+        Collections.addAll(participated_Events, 3, 4, 5,12);
         Person p = new Person(1, "Ahmet Oğuz", "Ergin", "ahmet@hotmail.com", "ahmet123", "05052082324", "Male", participated_Events, created_Events);
         people.add(p);
 
         participated_Events = new ArrayList<>();
         created_Events = new ArrayList<>();
-        Collections.addAll(created_Events, 3, 4);
-        Collections.addAll(participated_Events, 1, 2, 5);
+        Collections.addAll(created_Events, 3, 4,10,11);
+        Collections.addAll(participated_Events, 1, 2, 5,10,11,12);
         p = new Person(2, "Emre", "Cura", "emre@hotmail.com", "emre123", "05051112233", "Male", participated_Events, created_Events);
         people.add(p);
 
         participated_Events = new ArrayList<>();
         created_Events = new ArrayList<>();
         Collections.addAll(created_Events, 5, 6);
-        Collections.addAll(participated_Events, 1, 2, 3, 4);
+        Collections.addAll(participated_Events, 1, 2, 3, 4,10);
         p = new Person(3, "Bertan", "Özer", "bertan@hotmail.com", "bertan123", "05051112233", "Male", participated_Events, created_Events);
         people.add(p);
 
         participated_Events = new ArrayList<>();
         created_Events = new ArrayList<>();
         Collections.addAll(created_Events, 7, 8);
-        Collections.addAll(participated_Events, 1, 2);
+        Collections.addAll(participated_Events, 1, 2,12);
         p = new Person(4, "Zeynep", "Ergin", "zeynep@hotmail.com", "zeynep123", "-1", "Female", participated_Events, created_Events);
         people.add(p);
 
@@ -89,7 +89,16 @@ public class MainSys {
         event = new Event(8, -1, "Evening Meal", "Meal", "Lets go to evening meal together.", "Bilkent/Şençam", "20/06/2023-19.00", "20/06/2023-21.00");
         events.add(event);
 
-        event = new Event(9, 20, "Volunteering Project Conference", "Conference", "Volunteering project meet up. Zoom link will be provided.", "Anakara/Bilkent/Conference Building", "27/06/2023-13.00", "27/06/2023-14.00");
+        event = new Event(9, 20, "Volunteering Project Conference", "Conference", "Volunteering project meet up. Zoom link will be provided.", "Ankara/Bilkent/Conference Building", "27/06/2023-13.00", "27/06/2023-14.00");
+        events.add(event);
+
+        event = new Event(10, 12, "Towards A Life Cycle Sustainability Framework", "Conference", "We will talk about how we can build a better life cycle environment.", "FF Building, FFB06 ", "14/06/2023-16.00", "14/06/2023-17.00");
+        events.add(event);
+
+        event = new Event(11, 8, "Aikido Course", "Sport", "Learn how to defend yourself.", "Dormitories Sport Hall", "19/06/2023-18.00", "19/06/2023-19.00");
+        events.add(event);
+
+        event = new Event(12, 20, "Travel to Cappadocia", "Sightseeing", "Let's discover Cappadocia together!", "In front of the C building", "30/06/2023-06.00", "30/06/2023-22.00");
         events.add(event);
         // events end
     }
