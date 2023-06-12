@@ -1,6 +1,7 @@
 package com.soci.soci.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.system.StructMsghdr;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.soci.soci.Interfaces.Type;
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.R;
+import com.soci.soci.Ui.DisplayEventActivity;
 
 import java.util.ArrayList;
 
@@ -170,27 +172,9 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     private void rv_Item_Event(Event event) {
-        MainSys.msg(context, event.getName());
+        Intent sendIntent = new Intent(context, DisplayEventActivity.class);
+        sendIntent.putExtra("person_Id", current_Person.getId());
+        sendIntent.putExtra("event_Id", event.getId());
+        context.startActivity(sendIntent);
     }
-
-
-//
-//    public void createShowDialog(Event organization) {
-//        Dialog customDialog = new Dialog(MainActivity.this);
-//        customDialog.setContentView(R.layout.dialog);
-//
-//        TextView tv = customDialog.findViewById(R.id.tvDialogName);
-//        Button btnClose = customDialog.findViewById(R.id.btnDialogClose);
-//
-//        tv.setText(organization.getCompanyName());
-//
-//        btnClose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                customDialog.dismiss();
-//            }
-//        });
-//
-//        customDialog.show();
-//    }
 }
