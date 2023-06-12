@@ -24,6 +24,16 @@ import com.soci.soci.Ui.EventsFragment;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
+
+import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 
 public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Type {
     private Context context;
@@ -31,7 +41,6 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private ArrayList<Event> recyclerItemValues;
     private String fragmentName;
     int participated_People_Count;
-
     int person_Role;
 
     RvAdapterInterface interfaceListener;
@@ -283,29 +292,20 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         eventBtnJoinLeave.setImageResource(imgId);
 
 
-        // call event
-        eventBtnCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (person_Role == OWNER) {
-                    MainSys.msg(context, "This event is belonging to you.");
-                } else {
-                    String phone_num = "-1";
+        GestureDetectorCompat gestureDetector;
+        CustomGestureListener customGestureListener;
+        customGestureListener = new CustomGestureListener(current_Event);
+        gestureDetector = new GestureDetectorCompat(context, customGestureListener);
 
-                    for (Person p : MainSys.people) {
-                        for (Integer owner_id : p.getCreated_Events()) {
-                            if (owner_id == current_Event.getId())
-                                phone_num = p.getPhone() + "";
-                        }
-                    }
-                    if (phone_num.equalsIgnoreCase("-1")) {
-                        MainSys.msg(context, "Phone number is not shared.");
-                    } else {
-                        MainSys.makePhoneCall((Activity) context, phone_num);
-                    }
-                }
+        // call event
+        eventBtnCall.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                //return MainActivity.this.mDetector.onTouchEvent(motionEvent);
+                return gestureDetector.onTouchEvent(motionEvent);
             }
         });
+
 
         // update btn event
         eventBtnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -376,4 +376,39 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         customDialog.show();
     }
+
+    class CustomGestureListener extends GestureDetector.SimpleOnGestureListener {
+        final int OWNER = 1;
+        final int PARTICIPATOR = 2;
+        final int NORMAL = 3;
+        Event current_Event;
+
+        public CustomGestureListener(Event current_Event) {
+            this.current_Event = current_Event;
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            super.onLongPress(e);
+            if (person_Role == OWNER) {
+                MainSys.msg(context, "This event is belonging to you.");
+            } else {
+                String phone_num = "-1";
+
+                for (Person p : MainSys.people) {
+                    for (Integer owner_id : p.getCreated_Events()) {
+                        if (owner_id == current_Event.getId())
+                            phone_num = p.getPhone() + "";
+                    }
+                }
+                if (phone_num.equalsIgnoreCase("-1")) {
+                    MainSys.msg(context, "Phone number is not shared.");
+                } else {
+                    MainSys.makePhoneCall((Activity) context, phone_num);
+                }
+            }
+//            Toast.makeText(getBaseContext(), "onLongPress Over Image", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

@@ -2,7 +2,10 @@ package com.soci.soci;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +19,7 @@ import com.soci.soci.Adapter.EventsAdapter;
 import com.soci.soci.Adapter.PageSwiperAdapter;
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Model.Person;
+import com.soci.soci.Service.MyService;
 import com.soci.soci.Ui.EventsFragment;
 import com.soci.soci.Ui.UserEventFragment;
 import com.soci.soci.databinding.ActivityMainBinding;
@@ -26,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
     private TabLayout tabLayout;
     ActivityMainBinding binding;
     PageSwiperAdapter pagerAdapter;
+    IntentFilter intentFilter;
+    Person current_Person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +53,28 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
         // get current user
         Intent receivedIntent = getIntent();
         int current_Person_id = receivedIntent.getIntExtra("person_id", -1);
-        Person current_Person = MainSys.getPersonById(current_Person_id);
+        current_Person = MainSys.getPersonById(current_Person_id);
 
-        MainSys.msg(MainActivity.this, current_Person.getName());
+
+        // service related
+        // register for service with action name
+        intentFilter = new IntentFilter();
+        intentFilter.addAction("RANDOM_MESSAGE_GENERATED");
+
+        // associate service with its receiver
+        registerReceiver(broadcastReceiver, intentFilter);
+
+
+        // create intent to send data
+        Intent intent = new Intent(getBaseContext(), MyService.class);
+
+        // start service with thread
+        MyService.enqueueWork(MainActivity.this, intent);
+        // service related end
+
 
         // swiper opertaions
         performSwiperOperation(current_Person_id);
-
-
     }
 
     private void performSwiperOperation(int current_Person_id) {
@@ -128,4 +148,13 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
             pagerAdapter.performInterfaceOperations("update user event fragment rv");
         }
     }
+
+    // executed when broadcast message is received from service
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String output = intent.getStringExtra("message");
+            MainSys.msg(MainActivity.this, output + current_Person.getName() + ".");
+        }
+    };
 }
