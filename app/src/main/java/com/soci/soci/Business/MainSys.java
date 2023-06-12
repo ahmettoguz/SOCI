@@ -30,28 +30,28 @@ public class MainSys {
         ArrayList<Integer> participated_Events = new ArrayList<>();
         ArrayList<Integer> created_Events = new ArrayList<>();
         Collections.addAll(created_Events, 1, 2, 12);
-        Collections.addAll(participated_Events, 3, 4, 5,12);
+        Collections.addAll(participated_Events, 3, 4, 5);
         Person p = new Person(1, "Ahmet Oğuz", "Ergin", "ahmet@hotmail.com", "ahmet123", "05052082324", "Male", participated_Events, created_Events);
         people.add(p);
 
         participated_Events = new ArrayList<>();
         created_Events = new ArrayList<>();
-        Collections.addAll(created_Events, 3, 4,10,11);
-        Collections.addAll(participated_Events, 1, 2, 5,10,11,12);
+        Collections.addAll(created_Events, 3, 4, 10, 11);
+        Collections.addAll(participated_Events, 1, 2, 5, 12);
         p = new Person(2, "Emre", "Cura", "emre@hotmail.com", "emre123", "05051112233", "Male", participated_Events, created_Events);
         people.add(p);
 
         participated_Events = new ArrayList<>();
         created_Events = new ArrayList<>();
         Collections.addAll(created_Events, 5, 6);
-        Collections.addAll(participated_Events, 1, 2, 3, 4,10);
+        Collections.addAll(participated_Events, 1, 2, 3, 4, 10);
         p = new Person(3, "Bertan", "Özer", "bertan@hotmail.com", "bertan123", "05051112233", "Male", participated_Events, created_Events);
         people.add(p);
 
         participated_Events = new ArrayList<>();
         created_Events = new ArrayList<>();
         Collections.addAll(created_Events, 7, 8);
-        Collections.addAll(participated_Events, 1, 2,12);
+        Collections.addAll(participated_Events, 1, 2, 12);
         p = new Person(4, "Zeynep", "Ergin", "zeynep@hotmail.com", "zeynep123", "-1", "Female", participated_Events, created_Events);
         people.add(p);
 
