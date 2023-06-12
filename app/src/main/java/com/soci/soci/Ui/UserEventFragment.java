@@ -48,36 +48,60 @@ public class UserEventFragment extends Fragment {
 
     Context ctx;
     int current_Person_id;
+    FragmentUserEventBinding binding;
+    Person current_Person;
+    UserEventInterface interfaceListener;
+    View viewW;
+
+    public interface UserEventInterface {
+        public void userEventBehavior();
+    }
 
     public UserEventFragment(Context ctx, int current_Person_id) {
         this.ctx = ctx;
         this.current_Person_id = current_Person_id;
-    }
 
+        if (ctx instanceof UserEventInterface)
+            interfaceListener = (UserEventInterface) ctx;
+
+        // Retrieve the current Person object using the ID
+        current_Person = MainSys.getPersonById(current_Person_id);
+
+        // Initialize the inflater
+        LayoutInflater inflater = LayoutInflater.from(ctx);
+
+        // Inflate the layout for this fragment using the binding
+        binding = FragmentUserEventBinding.inflate(inflater);
+
+        // Get the root view from the binding
+        viewW = binding.getRoot();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        // recycler view
+        fillRecyclerView("all");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentUserEventBinding binding = FragmentUserEventBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
 
-        // get current person
-        Person current_Person = MainSys.getPersonById(current_Person_id);
+
+
 
         // recycler view
-        fillRecyclerView(binding, current_Person, "all");
+        fillRecyclerView("all");
 
+        // filtering event
         binding.userEventSpFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 view = (TextView) view;
-                fillRecyclerView(binding, current_Person, ((TextView) view).getText().toString());
+                fillRecyclerView(((TextView) view).getText().toString());
             }
 
             @Override
@@ -86,6 +110,7 @@ public class UserEventFragment extends Fragment {
             }
         });
 
+        // weather event
         binding.userEventBtnWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,18 +164,32 @@ public class UserEventFragment extends Fragment {
             }
         });
 
-        return view;
+        // add btn event
+        binding.userEventBtnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                interfaceListener.userEventBehavior();
+            }
+        });
+
+        return viewW;
     }
 
-    private void fillRecyclerView(FragmentUserEventBinding binding, Person current_Person, String participation) {
+    private void fillRecyclerView(String participation) {
         // recycler view related
         LinearLayoutManager layoutManager = new LinearLayoutManager(ctx);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.userEventRvEvents.setLayoutManager(layoutManager);
         // fill the RecyclerView
-        EventsAdapter adapter = new EventsAdapter(ctx, MainSys.getEventsAsArrayListFromParticipation(participation, current_Person), current_Person);
+        EventsAdapter adapter = new EventsAdapter(ctx, "userEventFragment", MainSys.getEventsAsArrayListFromParticipation(participation, current_Person), current_Person);
         binding.userEventRvEvents.setAdapter(adapter);
         // recycler view related end
+    }
+
+    public void updateUserEventFragment() {
+        String participator = binding.userEventSpFilter.getSelectedItem().toString();
+        fillRecyclerView(participator);
+//        MainSys.msg(ctx,"fragment transaction");
     }
 
     public void createShowDialogWeather(Weather weather) {

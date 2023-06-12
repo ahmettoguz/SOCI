@@ -221,7 +221,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingVertical="2dp"
-                    app:srcCompat="@drawable/action_update_event" />
+                    app:srcCompat="@drawable/actn_update_event" />
 
                 <ImageView
                     android:id="@+id/event_Btn_JoinLeave"
@@ -229,7 +229,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingVertical="2dp"
-                    app:srcCompat="@drawable/action_add_event" />
+                    app:srcCompat="@drawable/actn_add_event" />
 
                 <ImageView
                     android:id="@+id/event_Btn_Delete"
@@ -237,7 +237,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingVertical="2dp"
-                    app:srcCompat="@drawable/action_delete_event" />
+                    app:srcCompat="@drawable/actn_delete_event" />
 
 
             </LinearLayout>

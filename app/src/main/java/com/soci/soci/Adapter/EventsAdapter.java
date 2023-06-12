@@ -18,6 +18,7 @@ import com.soci.soci.Interfaces.Type;
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.R;
+import com.soci.soci.Ui.EventsFragment;
 
 import java.util.ArrayList;
 
@@ -26,11 +27,21 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private Person current_Person;
     private ArrayList<Event> recyclerItemValues;
+    private String fragmentName;
 
-    public EventsAdapter(Context context, ArrayList<Event> recyclerItemValues, Person current_Person) {
+    RvAdapterInterface interfaceListener;
+
+    public interface RvAdapterInterface {
+        public void rvAdapterBehavior(String fragmentName);
+    }
+
+    public EventsAdapter(Context context, String fragmentName, ArrayList<Event> recyclerItemValues, Person current_Person) {
         this.context = context;
         this.current_Person = current_Person;
         this.recyclerItemValues = recyclerItemValues;
+        this.fragmentName = fragmentName; // "userEventFragment", //"eventsFragment"
+
+        interfaceListener = (RvAdapterInterface) context;
     }
 
     @NonNull
@@ -299,9 +310,9 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             public void onClick(View view) {
                 if (final_Person_Role == OWNER) {
                     MainSys.events.remove(current_Event);
-                    recyclerItemValues.remove(current_Event);
-                    EventsAdapter.this.notifyDataSetChanged();
+                    current_Person.getCreated_Events().remove(Integer.valueOf(current_Event.getId()));
                     MainSys.msg(context, "Event is deleted.");
+                    interfaceListener.rvAdapterBehavior(fragmentName);
                     customDialog.dismiss();
                 } else {
                     MainSys.msg(context, "Just owner can delete event!");
