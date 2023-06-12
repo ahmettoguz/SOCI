@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
         int current_Person_id = receivedIntent.getIntExtra("person_id", -1);
         Person current_Person = MainSys.getPersonById(current_Person_id);
 
-        MainSys.msg(MainActivity.this, current_Person.getName());
 
+        MainSys.msg(MainActivity.this, "Welcome " + current_Person.getName() + ".");
         // swiper opertaions
         performSwiperOperation(current_Person_id);
 

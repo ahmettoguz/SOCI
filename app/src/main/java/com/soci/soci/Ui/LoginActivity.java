@@ -52,6 +52,9 @@ public class LoginActivity extends AppCompatActivity {
                 Map<String, String> result = loginOperation();
 
                 if (result.get("success").equalsIgnoreCase("true")) {
+                    // play sound
+                    MainSys.playSound(LoginActivity.this,"positive");
+
                     Intent sendIntent = new Intent(LoginActivity.this, MainActivity.class);
                     sendIntent.putExtra("person_id", Integer.parseInt(result.get("id")));
                     startActivity(sendIntent);

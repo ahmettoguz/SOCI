@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import androidx.core.content.ContextCompat;
 
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
+import com.soci.soci.R;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -193,6 +195,13 @@ public class MainSys {
             Intent intent = new Intent(Intent.ACTION_CALL, uri);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(intent);
+        }
+    }
+
+    public static void playSound(Context ctx, String type) {
+        if (type.equalsIgnoreCase("positive")) {
+            final MediaPlayer positiveSound = MediaPlayer.create(ctx, R.raw.sound_positive);
+            positiveSound.start();
         }
     }
 }
