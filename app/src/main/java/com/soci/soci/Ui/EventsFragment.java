@@ -29,7 +29,6 @@ public class EventsFragment extends Fragment {
     int current_Person_id;
     FragmentEventsBinding binding;
     Person current_Person;
-
     EventsFragmentInterface interfaceListener;
 
     public interface EventsFragmentInterface {
@@ -60,7 +59,7 @@ public class EventsFragment extends Fragment {
         current_Person = MainSys.getPersonById(current_Person_id);
 
         // recycler view
-        fillRecyclerView(binding, current_Person, "all");
+        fillRecyclerView("all");
 
         binding.eventsBtnAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +73,7 @@ public class EventsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 view = (TextView) view;
-                fillRecyclerView(binding, current_Person, ((TextView) view).getText().toString());
+                fillRecyclerView(((TextView) view).getText().toString());
             }
 
             @Override
@@ -88,15 +87,18 @@ public class EventsFragment extends Fragment {
         return view;
     }
 
-    private void fillRecyclerView(FragmentEventsBinding binding, Person current_Person, String category) {
+    private void fillRecyclerView(String category) {
         // recycler view related
         LinearLayoutManager layoutManager = new LinearLayoutManager(ctx);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.eventsRvEvents.setLayoutManager(layoutManager);
         // fill the RecyclerView
-        EventsAdapter adapter = new EventsAdapter(ctx, MainSys.getEventsAsArrayListFromCategory(category), current_Person);
+        EventsAdapter adapter = new EventsAdapter(ctx, "eventsFragment", MainSys.getEventsAsArrayListFromCategory(category), current_Person);
         binding.eventsRvEvents.setAdapter(adapter);
         // recycler view related end
     }
 
+    public void updateEventsFragment() {
+        fillRecyclerView("all");
+    }
 }

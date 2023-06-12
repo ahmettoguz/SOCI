@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
+import com.soci.soci.Adapter.EventsAdapter;
 import com.soci.soci.Adapter.PageSwiperAdapter;
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Model.Person;
@@ -20,7 +21,7 @@ import com.soci.soci.Ui.UserEventFragment;
 import com.soci.soci.databinding.ActivityMainBinding;
 
 
-public class MainActivity extends AppCompatActivity implements UserEventFragment.UserEventInterface, EventsFragment.EventsFragmentInterface {
+public class MainActivity extends AppCompatActivity implements UserEventFragment.UserEventInterface, EventsFragment.EventsFragmentInterface, EventsAdapter.RvAdapterInterface {
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
     ActivityMainBinding binding;
@@ -113,5 +114,16 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
     @Override
     public void eventsFragmentBehavior() {
         pagerAdapter.performInterfaceOperations("update user event fragment rv");
+    }
+
+    @Override
+    public void rvAdapterBehavior(String fragmentName) {
+        MainSys.msg(MainActivity.this, "rv interface'i çalıştı");
+        if (fragmentName.equalsIgnoreCase("userEventFragment")) {
+            pagerAdapter.performInterfaceOperations("update events fragment rv");
+
+        } else if (fragmentName.equalsIgnoreCase("eventsFragment")) {
+            pagerAdapter.performInterfaceOperations("update user event fragment rv");
+        }
     }
 }

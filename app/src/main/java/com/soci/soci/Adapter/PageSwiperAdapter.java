@@ -56,10 +56,10 @@ public class PageSwiperAdapter extends FragmentStateAdapter {
 
     public void performInterfaceOperations(String operation) {
         if (operation.equalsIgnoreCase("update events fragment rv")) {
-            MainSys.msg(ctx, "interface çalıştı.");
+            eventsFragment.updateEventsFragment();
         }
         else if (operation.equalsIgnoreCase("update user event fragment rv")) {
-            MainSys.msg(ctx, "interface çalıştı.1");
+            userEventFragment.updateUserEventFragment();
         }
     }
 

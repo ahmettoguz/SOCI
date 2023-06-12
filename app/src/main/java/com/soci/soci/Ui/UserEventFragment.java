@@ -48,7 +48,8 @@ public class UserEventFragment extends Fragment {
 
     Context ctx;
     int current_Person_id;
-
+    FragmentUserEventBinding binding;
+    Person current_Person;
     UserEventInterface interfaceListener;
 
     public interface UserEventInterface {
@@ -72,21 +73,21 @@ public class UserEventFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FragmentUserEventBinding binding = FragmentUserEventBinding.inflate(inflater, container, false);
+        binding = FragmentUserEventBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
         // get current person
-        Person current_Person = MainSys.getPersonById(current_Person_id);
+        current_Person = MainSys.getPersonById(current_Person_id);
 
         // recycler view
-        fillRecyclerView(binding, current_Person, "all");
+        fillRecyclerView("all");
 
         // filtering event
         binding.userEventSpFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 view = (TextView) view;
-                fillRecyclerView(binding, current_Person, ((TextView) view).getText().toString());
+                fillRecyclerView(((TextView) view).getText().toString());
             }
 
             @Override
@@ -160,15 +161,19 @@ public class UserEventFragment extends Fragment {
         return view;
     }
 
-    private void fillRecyclerView(FragmentUserEventBinding binding, Person current_Person, String participation) {
+    private void fillRecyclerView(String participation) {
         // recycler view related
         LinearLayoutManager layoutManager = new LinearLayoutManager(ctx);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.userEventRvEvents.setLayoutManager(layoutManager);
         // fill the RecyclerView
-        EventsAdapter adapter = new EventsAdapter(ctx, MainSys.getEventsAsArrayListFromParticipation(participation, current_Person), current_Person);
+        EventsAdapter adapter = new EventsAdapter(ctx, "userEventFragment", MainSys.getEventsAsArrayListFromParticipation(participation, current_Person), current_Person);
         binding.userEventRvEvents.setAdapter(adapter);
         // recycler view related end
+    }
+
+    public void updateUserEventFragment() {
+        //fillRecyclerView("all");
     }
 
     public void createShowDialogWeather(Weather weather) {
