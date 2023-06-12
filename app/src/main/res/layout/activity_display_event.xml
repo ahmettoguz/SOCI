@@ -9,12 +9,12 @@
     tools:context=".Ui.UserInformationFragment">
 
     <TextView
-        android:id="@+id/userInformation_Tv_Title"
+        android:id="@+id/event_TV_Name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/dp15"
-        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp5"
         android:background="@drawable/shadow"
         android:paddingVertical="@dimen/dp10"
         android:text="Event Name"
@@ -24,7 +24,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="610dp"
+        android:layout_height="620dp"
         android:layout_marginHorizontal="@dimen/dp5"
         android:layout_marginTop="2dp"
         android:background="@drawable/shadow"
@@ -118,7 +118,7 @@
                     android:layout_gravity="center"
                     android:text="Start Date..."
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_Size" />
+                    android:textSize="20sp" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -132,7 +132,7 @@
                     android:layout_gravity="center"
                     android:text="End Date.."
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_Size" />
+                    android:textSize="20sp" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp50"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="@dimen/dp5"
             android:layout_marginTop="@dimen/dp5"
             android:background="@drawable/shadow"
@@ -159,7 +159,7 @@
                 android:gravity="center"
                 android:text="Place : "
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_Size" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -212,7 +212,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginHorizontal="@dimen/dp5"
-                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp5"
                 android:orientation="horizontal">
 
                 <ImageView
