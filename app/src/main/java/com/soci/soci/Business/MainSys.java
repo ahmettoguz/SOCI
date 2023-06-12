@@ -83,16 +83,16 @@ public class MainSys {
         event = new Event(6, -1, "Fast and Furious 10", "Cinema - Theater", "Come with me to Fast and Furious 10 film.", "Ankara/Kentpark/Prestige", "18/06/2023-19.00", "18/06/2023-21.00");
         events.add(event);
 
-        event = new Event(7, 20, "Başakşehir Football Match Spectator", "Spectator", "Lets suppot Başakşehir.", "Istanbul/Başakşehir Fatih Terim Stadium", "06/06/2023-20.00", "06/06/2023-22.00");
+        event = new Event(7, 20, "Başakşehir Football Match Spectator", "Spectator", "Lets suppot Başakşehir.", "Başakşehir Fatih Terim Stadium", "06/06/2023-20.00", "06/06/2023-22.00");
         events.add(event);
 
         event = new Event(8, -1, "Evening Meal", "Meal", "Lets go to evening meal together.", "Bilkent/Şençam", "20/06/2023-19.00", "20/06/2023-21.00");
         events.add(event);
 
-        event = new Event(9, 20, "Volunteering Project Conference", "Conference", "Volunteering project meet up. Zoom link will be provided.", "Ankara/Bilkent/Conference Building", "27/06/2023-13.00", "27/06/2023-14.00");
+        event = new Event(9, 20, "Volunteering Project", "Conference", "Volunteering project meet up.", "Ankara/Bilkent/Conference Building", "27/06/2023-13.00", "27/06/2023-14.00");
         events.add(event);
 
-        event = new Event(10, 12, "Towards A Life Cycle Sustainability Framework", "Conference", "We will talk about how we can build a better life cycle environment.", "FF Building, FFB06 ", "14/06/2023-16.00", "14/06/2023-17.00");
+        event = new Event(10, 12, "Sustainability Framework", "Conference", "Talk about how to build a better environment.", "FF Building, FFB06 ", "14/06/2023-16.00", "14/06/2023-17.00");
         events.add(event);
 
         event = new Event(11, 8, "Aikido Course", "Sport", "Learn how to defend yourself.", "Dormitories Sport Hall", "19/06/2023-18.00", "19/06/2023-19.00");
