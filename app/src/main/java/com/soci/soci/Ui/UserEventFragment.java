@@ -51,6 +51,7 @@ public class UserEventFragment extends Fragment {
     FragmentUserEventBinding binding;
     Person current_Person;
     UserEventInterface interfaceListener;
+    View viewW;
 
     public interface UserEventInterface {
         public void userEventBehavior();
@@ -62,22 +63,35 @@ public class UserEventFragment extends Fragment {
 
         if (ctx instanceof UserEventInterface)
             interfaceListener = (UserEventInterface) ctx;
+
+        // Retrieve the current Person object using the ID
+        current_Person = MainSys.getPersonById(current_Person_id);
+
+        // Initialize the inflater
+        LayoutInflater inflater = LayoutInflater.from(ctx);
+
+        // Inflate the layout for this fragment using the binding
+        binding = FragmentUserEventBinding.inflate(inflater);
+
+        // Get the root view from the binding
+        viewW = binding.getRoot();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        // recycler view
+        fillRecyclerView("all");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentUserEventBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
 
-        // get current person
-        current_Person = MainSys.getPersonById(current_Person_id);
+
+
 
         // recycler view
         fillRecyclerView("all");
@@ -158,7 +172,7 @@ public class UserEventFragment extends Fragment {
             }
         });
 
-        return view;
+        return viewW;
     }
 
     private void fillRecyclerView(String participation) {
@@ -174,7 +188,7 @@ public class UserEventFragment extends Fragment {
 
     public void updateUserEventFragment() {
         fillRecyclerView("all");
-        MainSys.msg(ctx,"bura çalıştı1");
+        MainSys.msg(ctx, "bura çalıştı1");
     }
 
     public void createShowDialogWeather(Weather weather) {
