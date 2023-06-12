@@ -100,5 +100,6 @@ public class EventsFragment extends Fragment {
 
     public void updateEventsFragment() {
         fillRecyclerView("all");
+        MainSys.msg(ctx,"bura çalıştı2");
     }
 }

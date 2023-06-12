@@ -173,7 +173,8 @@ public class UserEventFragment extends Fragment {
     }
 
     public void updateUserEventFragment() {
-        //fillRecyclerView("all");
+        fillRecyclerView("all");
+        MainSys.msg(ctx,"bura çalıştı1");
     }
 
     public void createShowDialogWeather(Weather weather) {

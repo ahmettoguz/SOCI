@@ -17,10 +17,8 @@ public class PageSwiperAdapter extends FragmentStateAdapter {
 
     private static final int NUM_PAGES = 3;
     Context ctx;
-
     UserEventFragment userEventFragment;
     EventsFragment eventsFragment;
-
     UserInformationFragment userInformationFragment;
 
     int current_Person_id;
@@ -36,13 +34,13 @@ public class PageSwiperAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                userEventFragment = new UserEventFragment(ctx, current_Person_id);
                 return userEventFragment;
             case 1:
                 eventsFragment = new EventsFragment(ctx, current_Person_id);
+                userEventFragment = new UserEventFragment(ctx, current_Person_id);
+                userInformationFragment = new UserInformationFragment(ctx, current_Person_id);
                 return eventsFragment;
             case 2:
-                userInformationFragment = new UserInformationFragment(ctx, current_Person_id);
                 return userInformationFragment;
             default:
                 return null;
