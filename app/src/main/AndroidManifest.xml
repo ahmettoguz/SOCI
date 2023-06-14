@@ -40,9 +40,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Ui.AddActivity"
-            android:exported="false" />
-        <activity
             android:name=".Ui.RegistrationActivity"
             android:exported="false" />
         <activity
