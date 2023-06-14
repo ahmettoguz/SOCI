@@ -214,12 +214,7 @@ public class MainSys {
     public static ArrayList<Event> getEventsAsArrayListFromParticipation(String participation, Person person) {
         ArrayList<Event> returnEvents = new ArrayList<>();
 
-        // add participated events
-        if (participation.equalsIgnoreCase("all") || participation.equalsIgnoreCase("Participated Events")) {
-            for (Integer event_id : person.getParticipated_Events()) {
-                returnEvents.add(getEventFromId(event_id));
-            }
-        }
+        Log.d("ahmo", person.toString());
 
         // add owner events
         if (participation.equalsIgnoreCase("all") || participation.equalsIgnoreCase("Owned Events")) {
@@ -227,6 +222,15 @@ public class MainSys {
                 returnEvents.add(getEventFromId(event_id));
             }
         }
+
+        // add participated events
+        if (participation.equalsIgnoreCase("all") || participation.equalsIgnoreCase("Participated Events")) {
+            for (Integer event_id : person.getParticipated_Events()) {
+                returnEvents.add(getEventFromId(event_id));
+            }
+        }
+
+        Log.d("ahmo", returnEvents.toString());
 
         return returnEvents;
     }

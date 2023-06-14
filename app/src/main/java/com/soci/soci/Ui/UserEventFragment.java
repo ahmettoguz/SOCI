@@ -91,8 +91,6 @@ public class UserEventFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-
-
         // recycler view
         fillRecyclerView("all");
 
@@ -181,9 +179,9 @@ public class UserEventFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.userEventRvEvents.setLayoutManager(layoutManager);
         // fill the RecyclerView
+        current_Person = MainSys.getPersonById(current_Person_id);
         EventsAdapter adapter = new EventsAdapter(ctx, "userEventFragment", MainSys.getEventsAsArrayListFromParticipation(participation, current_Person), current_Person);
         binding.userEventRvEvents.setAdapter(adapter);
-        // recycler view related end
     }
 
     public void updateUserEventFragment() {

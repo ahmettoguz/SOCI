@@ -5,6 +5,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.soci.soci.Business.MainSys;
+
 import java.util.ArrayList;
 
 public class Event_Table {
@@ -64,10 +66,9 @@ public class Event_Table {
 
     // Delete
     public static int delete(DatabaseHelper dbHelper, int id) {
-        Log.d("DATABASE OPERATIONS", "DELETE DONE");
         String where = FIELD_ID + " = " + id;
 
-        // returning affected row count. 0 returns if no record deleted.
+        // returning affected row count. 0 returns if no record deleted
         int deletedRowCount = dbHelper.delete(TABLE_NAME, where);
         return deletedRowCount;
     }

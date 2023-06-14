@@ -3,6 +3,7 @@ package com.soci.soci.Adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -369,12 +370,17 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 if (person_Role == OWNER) {
 
                     // remove from event table
-                    Event_Table.delete(dbHelper, current_Event.getId());
+                    if (
+                            Event_Table.delete(dbHelper, current_Event.getId()) != 0) {
+                        MainSys.msg(context, "Event is deleted successfully.");
+                    } else {
+                        MainSys.msg(context, "Deletion Error!");
+                    }
 
                     // update current data
                     MainSys.prepareDatabaseData(dbHelper);
 
-                    MainSys.msg(context, "Event is deleted.");
+                    // update recyler view by the help of interface
                     interfaceListener.rvAdapterBehavior(fragmentName);
                     customDialog.dismiss();
                 } else {

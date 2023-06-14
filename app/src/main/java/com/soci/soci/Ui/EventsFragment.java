@@ -93,14 +93,15 @@ public class EventsFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         binding.eventsRvEvents.setLayoutManager(layoutManager);
         // fill the RecyclerView
+        current_Person = MainSys.getPersonById(current_Person_id);
         EventsAdapter adapter = new EventsAdapter(ctx, "eventsFragment", MainSys.getEventsAsArrayListFromCategory(category), current_Person);
         binding.eventsRvEvents.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         // recycler view related end
     }
 
     public void updateEventsFragment() {
         String category = binding.eventsSpCategories.getSelectedItem().toString();
         fillRecyclerView(category);
-//        MainSys.msg(ctx,"fragment transaction");
     }
 }

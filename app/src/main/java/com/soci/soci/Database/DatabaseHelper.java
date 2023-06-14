@@ -81,6 +81,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int delete(String tableName, String whereCondition) {
         // returning affected row count. 0 returns if no record deleted.
+        Log.d("ahmet", tableName);
+        Log.d("ahmet", whereCondition);
         return sqLiteDB.delete(tableName, whereCondition, null);
     }
 }
