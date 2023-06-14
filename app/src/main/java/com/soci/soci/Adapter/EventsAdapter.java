@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Database.DatabaseHelper;
 import com.soci.soci.Database.Event_Table;
+import com.soci.soci.Database.Person_Table;
 import com.soci.soci.Interfaces.Type;
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
@@ -334,15 +335,21 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 } else if (person_Role == PARTICIPATOR) {
                     person_Role = NORMAL;
 
+                    // change text color of the text
                     eventTVQuota.setTextColor(greenColor);
 
+                    // chnage text of the quota field
                     participated_People_Count--;
                     eventTVQuota.setText("Quota : " + participated_People_Count + "/" + quota);
 
+                    // change image
                     String imgName = "actn_add_event";
                     int img_ID = MainSys.convertImageNameToId(context, imgName);
                     eventBtnJoinLeave.setImageResource(img_ID);
+
+                    // remove event id from person
                     current_Person.getParticipated_Events().remove(Integer.valueOf(current_Event.getId()));
+                    MainSys.prepareDatabaseData(dbHelper);
 
                     interfaceListener.rvAdapterBehavior(fragmentName);
                 } else if (person_Role == NORMAL && eventTVQuota.getCurrentTextColor() == greenColor) {

@@ -51,12 +51,31 @@ public class Person_Table {
             String phone = cursor.getString(5);
             String gender = cursor.getString(6);
 
-            anItem = new Person_Helper(id,name,surname,email,password,phone,gender);
+            anItem = new Person_Helper(id, name, surname, email, password, phone, gender);
             data.add(anItem);
         }
         Log.d("DATABASE OPERATIONS", data.toString());
         return data;
     }
+
+    // Update
+    public static int update(DatabaseHelper dbHelper, int id, String name, String surname, String email, String password, String phone, String gender) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(FIELD_NAME, name);
+        contentValues.put(FIELD_SURNAME, surname);
+        contentValues.put(FIELD_EMAIL, email);
+        contentValues.put(FIELD_PASSWORD, password);
+        contentValues.put(FIELD_PHONE, phone);
+        contentValues.put(FIELD_GENDER, gender);
+
+        String where = FIELD_ID + " = " + id;
+
+        // returning affected row count. 0 returns if no record changed.
+        int affectedRowCount = dbHelper.update(TABLE_NAME, contentValues, where);
+        return affectedRowCount;
+
+    }
+
 
     // Delete
     public static int delete(DatabaseHelper dbHelper, int id) {
