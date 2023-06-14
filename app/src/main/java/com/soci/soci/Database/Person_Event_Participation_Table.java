@@ -19,7 +19,7 @@ public class Person_Event_Participation_Table {
     public static String DROP_TABLE_SQL = "DROP TABLE if exists " + TABLE_NAME;
 
     // Create
-    public static int insert(DatabaseHelper dbHelper, String person_Id, String event_Id) {
+    public static int insert(DatabaseHelper dbHelper, int person_Id, int event_Id) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(FIELD_ID_PERSON, person_Id);
         contentValues.put(FIELD_ID_EVENT, event_Id);

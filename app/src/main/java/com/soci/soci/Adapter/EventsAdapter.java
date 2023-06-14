@@ -354,21 +354,27 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
                     // update data
                     MainSys.prepareDatabaseData(dbHelper);
-
                     interfaceListener.rvAdapterBehavior(fragmentName);
                 } else if (person_Role == NORMAL && eventTVQuota.getCurrentTextColor() == greenColor) {
                     person_Role = PARTICIPATOR;
 
+                    // change text color of the text
                     eventTVQuota.setTextColor(blueViolet);
 
+                    // chnage text of the quota field
                     participated_People_Count++;
                     eventTVQuota.setText("Quota : " + participated_People_Count + "/" + quota);
 
+                    // change image
                     String imgName = "actn_remove_event";
                     int img_ID = MainSys.convertImageNameToId(context, imgName);
                     eventBtnJoinLeave.setImageResource(img_ID);
 
-                    current_Person.getParticipated_Events().add(current_Event.getId());
+                    // add event id, to person
+                    MainSys.add_Participated_Event_To_Person(dbHelper, current_Person.getId(), current_Event.getId());
+
+                    // update data
+                    MainSys.prepareDatabaseData(dbHelper);
                     interfaceListener.rvAdapterBehavior(fragmentName);
                 }
             }

@@ -280,4 +280,8 @@ public class MainSys {
             Person_Event_Participation_Table.delete(dbHelper, id);
         }
     }
+
+    public static void add_Participated_Event_To_Person(DatabaseHelper dbHelper, int person_id, int event_id) {
+        Person_Event_Participation_Table.insert(dbHelper, person_id, event_id);
+    }
 }
