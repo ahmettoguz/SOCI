@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Database.DatabaseHelper;
 import com.soci.soci.Database.Event_Table;
+import com.soci.soci.Database.Person_Event_Helper;
+import com.soci.soci.Database.Person_Event_Owner_Table;
 import com.soci.soci.Database.Person_Table;
 import com.soci.soci.Interfaces.Type;
 import com.soci.soci.Model.Event;
@@ -347,8 +349,10 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     int img_ID = MainSys.convertImageNameToId(context, imgName);
                     eventBtnJoinLeave.setImageResource(img_ID);
 
-                    // remove event id from person
-                    current_Person.getParticipated_Events().remove(Integer.valueOf(current_Event.getId()));
+                    // remove event id, from person
+                    MainSys.remove_Participated_Event_from_Person(dbHelper, current_Person.getId(), current_Event.getId());
+
+                    // update data
                     MainSys.prepareDatabaseData(dbHelper);
 
                     interfaceListener.rvAdapterBehavior(fragmentName);

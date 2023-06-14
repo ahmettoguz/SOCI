@@ -265,4 +265,19 @@ public class MainSys {
             positiveSound.start();
         }
     }
+
+    public static void remove_Participated_Event_from_Person(DatabaseHelper dbHelper, int person_id, int event_id) {
+        ArrayList<Person_Event_Helper> tempList = Person_Event_Participation_Table.getAll(dbHelper);
+
+        Integer id = null;
+
+        for (Person_Event_Helper peh : tempList) {
+            if (peh.getPerson_Id() == person_id && peh.getEvent_Id() == event_id)
+                id = peh.getId();
+        }
+
+        if (id != null) {
+            Person_Event_Participation_Table.delete(dbHelper, id);
+        }
+    }
 }
