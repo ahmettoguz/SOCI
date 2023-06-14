@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.soci.soci.Business.MainSys;
+import com.soci.soci.Database.DatabaseHelper;
+import com.soci.soci.Database.Event_Table;
 import com.soci.soci.Interfaces.Type;
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
@@ -42,6 +44,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private String fragmentName;
     int participated_People_Count;
     int person_Role;
+    DatabaseHelper dbHelper;
 
     RvAdapterInterface interfaceListener;
 
@@ -306,6 +309,8 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             }
         });
 
+        // create database helper
+        dbHelper = new DatabaseHelper(context);
 
         // update btn event
         eventBtnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -362,8 +367,13 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             @Override
             public void onClick(View view) {
                 if (person_Role == OWNER) {
-                    MainSys.events.remove(current_Event);
-                    current_Person.getCreated_Events().remove(Integer.valueOf(current_Event.getId()));
+
+                    // remove from event table
+                    Event_Table.delete(dbHelper, current_Event.getId());
+
+                    // update current data
+                    MainSys.prepareDatabaseData(dbHelper);
+
                     MainSys.msg(context, "Event is deleted.");
                     interfaceListener.rvAdapterBehavior(fragmentName);
                     customDialog.dismiss();
