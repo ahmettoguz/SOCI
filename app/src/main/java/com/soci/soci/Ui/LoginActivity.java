@@ -62,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // get the data from database
         dbHelper = new DatabaseHelper(this);
         MainSys.prepareDatabaseData(dbHelper);
 

@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.RadioButton;
 
 import com.soci.soci.Business.MainSys;
+import com.soci.soci.Database.DatabaseHelper;
+import com.soci.soci.Database.Person_Table;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.ActivityRegistrationBinding;
 
@@ -49,13 +51,18 @@ public class RegistrationActivity extends AppCompatActivity {
                     // display error message
                     MainSys.msg(RegistrationActivity.this, result.get("message"));
                 } else {
-                    MainSys.msg(RegistrationActivity.this, "Registration done successfully.");
 
-                    ArrayList<Integer> participated_Events = new ArrayList<>();
-                    ArrayList<Integer> created_Events = new ArrayList<>();
-                    Person p = new Person(24, result.get("name"), result.get("surname"), result.get("email"), result.get("password"), result.get("phone"), result.get("gender"), participated_Events, created_Events);
-                    MainSys.people.add(p);
-                    Log.d("ahmet", p.toString());
+                    // add to database
+                    DatabaseHelper dbHelper;
+                    dbHelper = new DatabaseHelper(RegistrationActivity.this);
+                    if (Person_Table.insert(dbHelper, result.get("name"), result.get("surname"), result.get("email"), result.get("password"), result.get("phone"), result.get("gender")) != -1) {
+                        MainSys.msg(RegistrationActivity.this, "Registration done successfully.");
+
+                        // update data
+                        MainSys.prepareDatabaseData(dbHelper);
+                    } else
+                        MainSys.msg(RegistrationActivity.this, "Registration done successfully.");
+
                     finish();
                 }
             }
