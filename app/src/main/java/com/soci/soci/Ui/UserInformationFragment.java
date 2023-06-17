@@ -8,11 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Model.Person;
-import com.soci.soci.databinding.FragmentEventsBinding;
 import com.soci.soci.databinding.FragmentUserInformationBinding;
 
 
@@ -58,5 +56,4 @@ public class UserInformationFragment extends Fragment {
         int imgId = MainSys.convertImageNameToId(ctx, imgName);
         binding.userInformationIvGender.setImageResource(imgId);
     }
-
 }

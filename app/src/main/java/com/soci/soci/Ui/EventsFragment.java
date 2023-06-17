@@ -1,13 +1,11 @@
 package com.soci.soci.Ui;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,6 @@ import android.widget.Toast;
 
 import com.soci.soci.Adapter.EventsAdapter;
 import com.soci.soci.Business.MainSys;
-import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.FragmentEventsBinding;
 
@@ -81,7 +78,6 @@ public class EventsFragment extends Fragment {
 
             }
         });
-
 
         // Inflate the layout for this fragment
         return view;

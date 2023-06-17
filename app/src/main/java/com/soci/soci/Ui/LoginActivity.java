@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.content.pm.ActivityInfo;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Database.DatabaseHelper;

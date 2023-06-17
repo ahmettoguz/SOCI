@@ -1,7 +1,6 @@
 package com.soci.soci.Ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,10 +15,8 @@ import com.soci.soci.Database.Person_Table;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.ActivityRegistrationBinding;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class RegistrationActivity extends AppCompatActivity {
     ActivityRegistrationBinding binding;

@@ -25,17 +25,9 @@ import com.soci.soci.Model.Weather;
 import com.soci.soci.R;
 import com.soci.soci.databinding.FragmentUserEventBinding;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,9 +35,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class UserEventFragment extends Fragment {
-
     Context ctx;
     int current_Person_id;
     FragmentUserEventBinding binding;
@@ -80,8 +70,6 @@ public class UserEventFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         // recycler view
         fillRecyclerView("all");
     }
@@ -89,8 +77,6 @@ public class UserEventFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         // recycler view
         fillRecyclerView("all");
 
@@ -226,8 +212,6 @@ public class UserEventFragment extends Fragment {
             iv.setImageResource(imgId);
 
             // tv related
-
-
             // Format the next date using the formatter
             LocalDate nextDate = currentDate.plusDays(i - 1);
             String formattedDate = nextDate.format(formatter);
@@ -240,10 +224,7 @@ public class UserEventFragment extends Fragment {
             output += "°C\nMin Temperature: ";
             output += weather.getTemperatureMin().get(i - 1).toString();
             output += "°C";
-
-
             tv.setText(output);
-
         }
 
         btnClose.setOnClickListener(new View.OnClickListener() {

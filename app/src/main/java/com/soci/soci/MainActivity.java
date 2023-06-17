@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
         int current_Person_id = receivedIntent.getIntExtra("person_id", -1);
         current_Person = MainSys.getPersonById(current_Person_id);
 
-
         // service related
         // register for service with action name
         intentFilter = new IntentFilter();
@@ -63,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
 
         // associate service with its receiver
         registerReceiver(broadcastReceiver, intentFilter);
-
 
         // create intent to send data
         Intent intent = new Intent(getBaseContext(), MyService.class);
@@ -94,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
         tab.setIcon(R.drawable.tab_2);
         binding.mainTlTabLayout.addTab(tab);
 
-
         // swiper related
         binding.mainVpViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -123,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
 
         // swiper related start from events fragment
         binding.mainVpViewPager.setCurrentItem(1, false);
-
     }
 
     @Override
@@ -138,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
 
     @Override
     public void rvAdapterBehavior(String fragmentName) {
-//        MainSys.msg(MainActivity.this, "rv interface'i çalıştı");
         if (fragmentName.equalsIgnoreCase("userEventFragment")) {
             pagerAdapter.performInterfaceOperations("update events fragment rv");
             pagerAdapter.performInterfaceOperations("update user event fragment rv");
