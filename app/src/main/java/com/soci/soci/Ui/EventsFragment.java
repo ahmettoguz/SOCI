@@ -1,6 +1,7 @@
 package com.soci.soci.Ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.soci.soci.Adapter.EventsAdapter;
 import com.soci.soci.Business.MainSys;
+import com.soci.soci.MainActivity;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.FragmentEventsBinding;
 
@@ -58,10 +60,14 @@ public class EventsFragment extends Fragment {
         // recycler view
         fillRecyclerView("all");
 
+        // add button event
         binding.eventsBtnAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ctx, "Add clicked", Toast.LENGTH_SHORT).show();
+                Intent sendIntent = new Intent(........., Event_Add_Activity.class);
+                sendIntent.putExtra("person_id", current_Person_id);
+                startActivity(sendIntent);
+
                 interfaceListener.eventsFragmentBehavior();
             }
         });
