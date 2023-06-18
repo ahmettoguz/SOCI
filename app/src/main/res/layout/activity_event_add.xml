@@ -1,9 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_theme_2"
+    android:orientation="vertical"
     tools:context=".Ui.Event_Add_Activity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/userInformation_Tv_Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@drawable/shadow"
+        android:paddingVertical="@dimen/dp10"
+        android:text="Create New Event"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/header_Size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="645dp"
+        android:layout_marginHorizontal="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp5"
+        android:background="@drawable/shadow"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/addEvent_Sp_Categories"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginHorizontal="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/shadow"
+            android:entries="@array/categories" />
+
+        <ImageView
+            android:id="@+id/addEvent_Iv_CategoryImg"
+            android:layout_width="400dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="@dimen/dp5"
+            android:paddingVertical="@dimen/dp5"
+            android:src="@drawable/category_all" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginHorizontal="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/shadow"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/addEvent_Et_Name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:ems="10"
+                android:hint="Event name"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_Size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp5"
+            android:background="@drawable/shadow"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/addEvent_Et_Description"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_gravity="start"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:ems="10"
+                android:gravity="start"
+                android:hint="Description"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_Size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginHorizontal="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/shadow"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/addEvent_Et_Place"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:ems="10"
+                android:hint="Place"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_Size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginHorizontal="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/shadow"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/addEvent_Et_Quota"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:ems="10"
+                android:hint="Quota"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_Size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginHorizontal="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/shadow"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/addEvent_Et_StartDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:ems="10"
+                android:hint="Start date (27/07/2023-22.00)"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_Size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginHorizontal="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/shadow"
+            android:orientation="horizontal">
+
+
+            <EditText
+                android:id="@+id/addEvent_Et_EndDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/dp10"
+                android:ems="10"
+                android:hint="End date (27/07/2023-23.00)"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_Size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp10"
+
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/event_Btn_Approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="2dp"
+                app:srcCompat="@drawable/actn_approve_event" />
+
+            <ImageView
+                android:id="@+id/event_Btn_Cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingVertical="2dp"
+                app:srcCompat="@drawable/actn_cancel_event" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
