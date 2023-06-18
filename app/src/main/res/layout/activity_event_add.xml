@@ -75,16 +75,17 @@
             android:background="@drawable/shadow"
             android:orientation="horizontal">
 
+
             <EditText
                 android:id="@+id/addEvent_Et_Description"
                 android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:layout_gravity="start"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp10"
-                android:ems="10"
-                android:gravity="start"
+                android:gravity="start|top"
                 android:hint="Description"
-                android:inputType="text"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:scrollbars="vertical"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_Size" />
         </LinearLayout>
