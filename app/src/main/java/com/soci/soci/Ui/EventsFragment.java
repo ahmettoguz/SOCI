@@ -64,7 +64,7 @@ public class EventsFragment extends Fragment {
         binding.eventsBtnAddEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent sendIntent = new Intent(........., Event_Add_Activity.class);
+                Intent sendIntent = new Intent(ctx, Event_Add_Activity.class);
                 sendIntent.putExtra("person_id", current_Person_id);
                 startActivity(sendIntent);
 
