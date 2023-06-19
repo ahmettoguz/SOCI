@@ -36,8 +36,7 @@
             android:layout_height="@dimen/dp40"
             android:layout_marginHorizontal="@dimen/dp10"
             android:layout_marginTop="@dimen/dp10"
-            android:background="@drawable/shadow"
-            android:entries="@array/categories" />
+            android:background="@drawable/shadow" />
 
         <ImageView
             android:id="@+id/addEvent_Iv_CategoryImg"
