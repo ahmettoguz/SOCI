@@ -14,10 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.soci.soci.Business.MainSys;
+import com.soci.soci.Database.DatabaseHelper;
+import com.soci.soci.Database.Event_Table;
+import com.soci.soci.Database.Person_Event_Owner_Table;
+import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.R;
 import com.soci.soci.databinding.ActivityEventAddBinding;
 import com.soci.soci.databinding.ActivityMainBinding;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -85,7 +91,7 @@ public class Event_Add_Activity extends AppCompatActivity {
         });
 
         // automatically fill the form
-        //fillForm();
+        fillForm();
 
         // cancel button event
         binding.eventBtnCancel.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +101,7 @@ public class Event_Add_Activity extends AppCompatActivity {
             }
         });
 
+        // approve button event
         binding.eventBtnApprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +109,35 @@ public class Event_Add_Activity extends AppCompatActivity {
 
                 if (result.get("success").equalsIgnoreCase("true")) {
 
+                    // get the input
+                    int id, max_Participant;
+                    String name, category, description, location, start_Date, end_Date;
+                    name = binding.addEventEtName.getText().toString();
+                    description = binding.addEventEtDescription.getText().toString();
+                    location = binding.addEventEtPlace.getText().toString();
+                    start_Date = binding.addEventEtStartDate.getText().toString();
+                    end_Date = binding.addEventEtEndDate.getText().toString();
+                    max_Participant = binding.addEventEtQuota.getText().toString().equalsIgnoreCase("") ? -1 : Integer.parseInt(binding.addEventEtQuota.getText().toString());
+                    category = ((TextView) binding.addEventSpCategories.getSelectedView()).getText().toString();
+
+                    // database insertion operation for the event
+                    DatabaseHelper dbHelper;
+                    dbHelper = new DatabaseHelper(Event_Add_Activity.this);
+
+                    int insertedEventId = Event_Table.insert(dbHelper, max_Participant, name, category, description, location, start_Date, end_Date);
+                    if (insertedEventId != -1) {
+                        if (Person_Event_Owner_Table.insert(dbHelper, current_Person_id + "", insertedEventId + "") != -1) {
+                            MainSys.msg(Event_Add_Activity.this, "Event is added successfully");
+                            finish();
+
+                            // update data
+                            MainSys.prepareDatabaseData(dbHelper);
+                        } else {
+                            MainSys.msg(Event_Add_Activity.this, "Database insertion error! ");
+                        }
+                    } else {
+                        MainSys.msg(Event_Add_Activity.this, "Database insertion error! ");
+                    }
                 } else {
                     MainSys.msg(Event_Add_Activity.this, result.get("message"));
                 }
