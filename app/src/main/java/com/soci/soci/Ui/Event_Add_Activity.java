@@ -2,6 +2,7 @@ package com.soci.soci.Ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -128,10 +129,15 @@ public class Event_Add_Activity extends AppCompatActivity {
                     if (insertedEventId != -1) {
                         if (Person_Event_Owner_Table.insert(dbHelper, current_Person_id + "", insertedEventId + "") != -1) {
                             MainSys.msg(Event_Add_Activity.this, "Event is added successfully");
-                            finish();
 
                             // update data
                             MainSys.prepareDatabaseData(dbHelper);
+
+                            // return intent to update recycler view
+                            Intent returnIntent = new Intent();
+                            returnIntent.putExtra("success", "true");
+                            setResult(RESULT_OK, returnIntent);
+                            finish();
                         } else {
                             MainSys.msg(Event_Add_Activity.this, "Database insertion error! ");
                         }

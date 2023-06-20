@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -66,7 +70,7 @@ public class EventsFragment extends Fragment {
             public void onClick(View view) {
                 Intent sendIntent = new Intent(ctx, Event_Add_Activity.class);
                 sendIntent.putExtra("person_id", current_Person_id);
-                startActivity(sendIntent);
+                actResultLauncher.launch(sendIntent);
 
                 interfaceListener.eventsFragmentBehavior();
             }
@@ -106,4 +110,13 @@ public class EventsFragment extends Fragment {
         String category = binding.eventsSpCategories.getSelectedItem().toString();
         fillRecyclerView(category);
     }
+
+    ActivityResultLauncher<Intent> actResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            Intent returnIntent = result.getData();
+            if (result.getResultCode() == -1)
+                interfaceListener.eventsFragmentBehavior();
+        }
+    });
 }

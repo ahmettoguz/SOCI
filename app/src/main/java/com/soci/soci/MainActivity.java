@@ -123,12 +123,14 @@ public class MainActivity extends AppCompatActivity implements UserEventFragment
 
     @Override
     public void userEventBehavior() {
+        pagerAdapter.performInterfaceOperations("update user event fragment rv");
         pagerAdapter.performInterfaceOperations("update events fragment rv");
     }
 
     @Override
     public void eventsFragmentBehavior() {
         pagerAdapter.performInterfaceOperations("update user event fragment rv");
+        pagerAdapter.performInterfaceOperations("update events fragment rv");
     }
 
     @Override
