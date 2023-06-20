@@ -71,8 +71,6 @@ public class EventsFragment extends Fragment {
                 Intent sendIntent = new Intent(ctx, Event_Add_Activity.class);
                 sendIntent.putExtra("person_id", current_Person_id);
                 actResultLauncher.launch(sendIntent);
-
-                interfaceListener.eventsFragmentBehavior();
             }
         });
 
@@ -111,6 +109,7 @@ public class EventsFragment extends Fragment {
         fillRecyclerView(category);
     }
 
+    // add operation result
     ActivityResultLauncher<Intent> actResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {

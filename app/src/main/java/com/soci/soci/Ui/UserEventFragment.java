@@ -2,8 +2,13 @@ package com.soci.soci.Ui;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -148,11 +153,13 @@ public class UserEventFragment extends Fragment {
             }
         });
 
-        // add btn event
+        // add button event
         binding.userEventBtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                interfaceListener.userEventBehavior();
+                Intent sendIntent = new Intent(ctx, Event_Add_Activity.class);
+                sendIntent.putExtra("person_id", current_Person_id);
+                actResultLauncher.launch(sendIntent);
             }
         });
 
@@ -236,4 +243,14 @@ public class UserEventFragment extends Fragment {
 
         customDialog.show();
     }
+
+    // add operation result
+    ActivityResultLauncher<Intent> actResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            Intent returnIntent = result.getData();
+            if (result.getResultCode() == -1)
+                interfaceListener.userEventBehavior();
+        }
+    });
 }
