@@ -1,4 +1,4 @@
-<h1 align="center">Social Event Planner - SOCI</h1> <br>
+<h1 align="center">Social Event Planner</h1> <br>
 
 <div align="center">
     <img width=175 src="assets/images/favicon.png">
@@ -57,3 +57,5 @@ This project was developed for Android using the Java language. The purpose of t
 ## Contributors
 
 <a href="https://github.com/ahmettoguz" target="_blank"><img width=50 height=50 src="https://avatars.githubusercontent.com/u/101711642?v=4"></a>
+<a href="https://github.com/emrecura8" target="_blank"><img width=50 height=50 src="https://avatars.githubusercontent.com/u/70863343?v=4"></a>
+<a href="https://github.com/893849384938" target="_blank"><img width=50 height=50 src="https://media.licdn.com/dms/image/D4E03AQFSfkjR47mUQA/profile-displayphoto-shrink_400_400/0/1680436676964?e=1692835200&v=beta&t=Cc4F4W6AfL7Bae7T-VURHTLEwH3EeZYXarnE_LZ8ews"></a>
