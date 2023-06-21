@@ -21,7 +21,7 @@
 <br/>
 
 <div align="center">
-    <img width=1000 src="assets/images/demo.png">
+    <img width=1000 src="assets/images/demo_1.png">
 </div>
 
 <br/>
