@@ -1,7 +1,7 @@
 <h1 align="center">Social Event Planner - SOCI</h1> <br>
 
 <div align="center">
-    <img width=175 src="assets/images/soci_icon.png">
+    <img width=175 src="assets/images/favicon.png">
 </div>
 
 <br/>
