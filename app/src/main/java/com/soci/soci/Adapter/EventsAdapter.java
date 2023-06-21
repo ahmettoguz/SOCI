@@ -3,6 +3,7 @@ package com.soci.soci.Adapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.soci.soci.Interfaces.Type;
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.R;
+import com.soci.soci.Ui.Event_Update_Activity;
 import com.soci.soci.Ui.EventsFragment;
 
 import java.util.ArrayList;
@@ -54,6 +56,7 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public interface RvAdapterInterface {
         public void rvAdapterBehavior(String fragmentName);
+
     }
 
     public EventsAdapter(Context context, String fragmentName, ArrayList<Event> recyclerItemValues, Person current_Person) {
@@ -321,7 +324,10 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             @Override
             public void onClick(View view) {
                 if (person_Role == OWNER) {
-                    MainSys.msg(context, "Update in progress.");
+                    Intent sendIntent = new Intent(context, Event_Update_Activity.class);
+                    sendIntent.putExtra("person_id", current_Person.getId());
+                    sendIntent.putExtra("event_id", current_Event.getId());
+                    context.startActivity(sendIntent);
                 } else {
                     MainSys.msg(context, "Just owner can update event!");
                 }
