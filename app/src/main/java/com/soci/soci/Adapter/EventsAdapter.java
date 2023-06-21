@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,27 +19,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Database.DatabaseHelper;
 import com.soci.soci.Database.Event_Table;
-import com.soci.soci.Database.Person_Event_Helper;
-import com.soci.soci.Database.Person_Event_Owner_Table;
-import com.soci.soci.Database.Person_Table;
 import com.soci.soci.Interfaces.Type;
 import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.R;
-import com.soci.soci.Ui.Event_Update_Activity;
-import com.soci.soci.Ui.EventsFragment;
 
 import java.util.ArrayList;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 
-import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 
 public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Type {
@@ -252,7 +241,6 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         TextView eventTVQuota = customDialog.findViewById(R.id.event_TV_Quota);
         ImageView eventIvCategory = customDialog.findViewById(R.id.event_Iv_Category);
         ImageView eventBtnJoinLeave = customDialog.findViewById(R.id.event_Btn_JoinLeave);
-        ImageView eventBtnUpdate = customDialog.findViewById(R.id.event_Btn_Update);
         ImageView eventBtnDelete = customDialog.findViewById(R.id.event_Btn_Delete);
         Button eventBtnCall = customDialog.findViewById(R.id.event_Btn_Call);
 
@@ -318,21 +306,6 @@ public class EventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         // create database helper
         dbHelper = new DatabaseHelper(context);
-
-        // update btn event
-        eventBtnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (person_Role == OWNER) {
-                    Intent sendIntent = new Intent(context, Event_Update_Activity.class);
-                    sendIntent.putExtra("person_id", current_Person.getId());
-                    sendIntent.putExtra("event_id", current_Event.getId());
-                    context.startActivity(sendIntent);
-                } else {
-                    MainSys.msg(context, "Just owner can update event!");
-                }
-            }
-        });
 
         // join leave button event
         eventBtnJoinLeave.setOnClickListener(new View.OnClickListener() {

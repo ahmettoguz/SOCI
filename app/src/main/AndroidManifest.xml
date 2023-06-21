@@ -20,9 +20,6 @@
         android:theme="@style/Theme.SOCI"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".Ui.Event_Update_Activity"
-            android:exported="false" />
         <!-- service related -->
         <service
             android:name=".Service.MyService"

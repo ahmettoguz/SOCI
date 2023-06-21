@@ -92,7 +92,7 @@ public class Event_Add_Activity extends AppCompatActivity {
         });
 
         // automatically fill the form
-        fillForm();
+        // fillForm();
 
         // cancel button event
         binding.eventBtnCancel.setOnClickListener(new View.OnClickListener() {
