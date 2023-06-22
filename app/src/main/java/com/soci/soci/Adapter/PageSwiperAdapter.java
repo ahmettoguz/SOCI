@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.soci.soci.Business.MainSys;
-import com.soci.soci.MainActivity;
 import com.soci.soci.Ui.EventsFragment;
 import com.soci.soci.Ui.UserEventFragment;
 import com.soci.soci.Ui.UserInformationFragment;

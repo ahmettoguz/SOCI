@@ -16,15 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.soci.soci.Adapter.EventsAdapter;
 import com.soci.soci.Business.MainSys;
-import com.soci.soci.MainActivity;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.FragmentEventsBinding;
-
-import org.w3c.dom.Text;
 
 public class EventsFragment extends Fragment {
 

@@ -2,7 +2,6 @@ package com.soci.soci.Ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -12,22 +11,16 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.soci.soci.Business.MainSys;
 import com.soci.soci.Database.DatabaseHelper;
 import com.soci.soci.Database.Event_Table;
 import com.soci.soci.Database.Person_Event_Owner_Table;
-import com.soci.soci.Model.Event;
 import com.soci.soci.Model.Person;
 import com.soci.soci.R;
 import com.soci.soci.databinding.ActivityEventAddBinding;
-import com.soci.soci.databinding.ActivityMainBinding;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

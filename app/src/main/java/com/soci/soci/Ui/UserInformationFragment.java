@@ -13,7 +13,6 @@ import com.soci.soci.Business.MainSys;
 import com.soci.soci.Model.Person;
 import com.soci.soci.databinding.FragmentUserInformationBinding;
 
-
 public class UserInformationFragment extends Fragment {
 
     Context ctx;
@@ -50,7 +49,6 @@ public class UserInformationFragment extends Fragment {
         binding.userInformationTvSurname.setText(binding.userInformationTvSurname.getText().toString() + current_Person.getSurname());
         binding.userInformationTvEmail.setText(binding.userInformationTvEmail.getText().toString() + current_Person.getEmail());
         binding.userInformationTvPhone.setText(binding.userInformationTvPhone.getText().toString() + current_Person.getPhone());
-
 
         String imgName = current_Person.getGender().equalsIgnoreCase("female") ? "female" : "male";
         int imgId = MainSys.convertImageNameToId(ctx, imgName);
